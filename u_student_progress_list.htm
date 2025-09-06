@@ -1,0 +1,987 @@
+<!DOCTYPE html><html lang="en" class=" ltr " data-doctype="true" dir="ltr" ontouchend="CustomEvent.fireAll('body_clicked', event);"><head><script>document.addEventListener('click', function (event) {
+				CustomEvent.fireAll('body_clicked', event);
+			});
+			document.hasBodyClickedTrigger = 'true';</script><script type="text/javascript"></script><title>ServiceNow</title><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"></meta><meta http-equiv="cache-control" content="public"></meta><meta name="viewport" content="initial-scale=1.0"></meta><script type="text/javascript" data-description="globals population">
+	window.NOW = window.NOW || {};
+	var g_loadTime = new Date();
+	var lastActivity = new Date();
+	var g_lang = 'en';
+	var g_system_lang = 'en';
+	var g_enhanced_activated = 'true';
+	  var g_popup_timeout = parseInt(100);
+	var g_export_warn_threshold = parseInt(10000);
+	  var g_event_handler_ids = {};
+	var g_event_handlers = [];
+	var g_event_handlers_onLoad = [];
+	var g_event_handlers_onSubmit = [];
+	var g_event_handlers_onChange = [];
+	var g_event_handlers_onCellEdit = {};
+	var g_event_handlers_localCache = {};
+	var g_event_handlers_queryTracking = true;
+	var g_user_date_time_format = "yyyy-MM-dd HH:mm:ss";
+	var g_user_date_format = "yyyy-MM-dd";
+	var g_user_decimal_separator = ".";
+	var g_user_grouping_separator = ",";
+	var g_glide_list_separator = ", ";
+	var g_allow_field_dependency_for_templates = ("true" === "true");
+	var g_tz_offset = -25200000;
+	  var g_tz_user_offset = true;
+	var g_first_day_of_week = parseInt(1, 10);
+	var g_date_picker_first_day_of_week = parseInt(0, 10);
+	  var g_full_calendar_edit = true;
+	var g_submitted = false;
+	var g_max_table_length = 80;
+	var g_fontSizePreference = "";
+	var g_fontSize = "10pt";
+	// use to be the sys_property glide.ui.js_error_notify, hard coded for PRB603998
+	var g_jsErrorNotify = "true";
+	var g_cancelPreviousTransaction = true;
+	var g_text_direction = "ltr";
+	var g_glide_list_filter_max_length =  parseInt("0", 10);
+	var g_accessibility = false;
+	var g_accessibility_tooltips = false;
+	var g_accessibility_tooltip_duration = parseInt("10", 10);
+	var g_accessibility_visual_patterns = false;
+	var g_accessibility_screen_reader_table = false;
+	var g_accessibility_date_format = false;
+	var g_detail_row = false;
+	var g_builddate = "07-23-2025_2226";
+	// default values to be used in absence of user preferences are hard coded below
+	// as well as in keyboardShortcuts.js and keyboard_preference_changer.xml
+	window.g_keyboard_shortcuts = {};
+	window.g_keyboard_shortcuts.allow_in_input_fields = false;
+	window.g_keyboard_shortcuts.enabled = true;
+	window.g_keyboard_shortcuts.global_search = {};
+	window.g_keyboard_shortcuts.global_search.enabled = true;
+	window.g_keyboard_shortcuts.global_search.key_combination = 'ctrl+alt+g';
+	window.g_keyboard_shortcuts.main_frame = {};
+	window.g_keyboard_shortcuts.main_frame.enabled = true;
+	window.g_keyboard_shortcuts.main_frame.key_combination = 'ctrl+alt+p';
+	window.g_keyboard_shortcuts.navigator_toggle = {};
+	window.g_keyboard_shortcuts.navigator_toggle.enabled = true;
+	window.g_keyboard_shortcuts.navigator_toggle.key_combination = 'ctrl+alt+c';
+	window.g_keyboard_shortcuts.navigator_filter = {};
+	window.g_keyboard_shortcuts.navigator_filter.enabled = true;
+	window.g_keyboard_shortcuts.navigator_filter.key_combination = 'ctrl+alt+f';
+	window.g_keyboard_shortcuts.impersonator = {}
+	window.g_keyboard_shortcuts.impersonator.enabled = true;
+	window.g_keyboard_shortcuts.impersonator.key_combination = 'ctrl+alt+i';
+	// The `g_concourse_onmessage_enforce_same_origin` and `g_concourse_onmessage_enforce_same_origin_whitelist` variables
+    // do not appear to be used anywhere other than the CustomEventManager, but leaving these for backwards compatability
+	var g_concourse_onmessage_enforce_same_origin = 'true'.toLowerCase() === 'true';
+	var g_concourse_onmessage_enforce_same_origin_whitelist = '';
+	window.g_load_functions = [];
+	window.g_render_functions = [];
+	window.g_late_load_functions = [];
+	window.g_tiny_url = {};
+	window.g_tiny_url.use_tiny = 'true' === 'true';
+	window.g_tiny_url.min_length = parseInt('1024');
+	
+	
+	var g_ck = 'c9c937f9c3ff22105f9f784ed40131ae5e9b2034ac41752e6b1d1bbb3d6a46081431a493';
+	
+
+	
+	var g_acWaitTime = parseInt(250);
+	
+
+	var g_autoRequest = '';
+
+	try {
+		window.NOW.dateFormat = JSON.parse("{\"timeAgo\": false, \"dateBoth\": false}");
+	} catch (e) {
+		window.NOW.dateFormat = {timeAgo: false, dateBoth: false};
+	}
+
+	window.NOW.dateFormat.dateStringFormat = "yyyy-MM-dd";
+	window.NOW.dateFormat.timeStringFormat = "HH:mm:ss";
+	window.NOW.shortDateFormat = false;
+	window.NOW.listTableWrap = true;
+	window.NOW.compact = false;
+  	window.NOW.templateToggle = false;
+	window.NOW.tabbed = true;
+	window.NOW.permalink = true;
+	window.NOW.useSimpleStorage = true;
+	window.NOW.httpRequestCompressionThreshold = 40000;
+	window.NOW.httpRequestCompressionLevel = -1;
+	window.NOW.httpRequestCompressionMemoryLevel = -1;
+	window.NOW.httpRequestCompressionExcludeUrls = 'xmlhttp.do'.split(',');
+	window.NOW.deferAmbConnection = false;
+	window.NOW.deferredAmbConnectionTimeout = 10000;
+	window.NOW.simpleStorageSynch = "6b9a8ff1c33f22105f9f784ed40131e0";
+	window.NOW.language =  'en';
+	window.NOW.listOpenInAppTab = false;
+	window.NOW.floatingScrollbars = 'false'.toLowerCase() === 'true';
+	
+	window.NOW.user = {};
+	window.NOW.user.preferences = [];
+	window.NOW.user.roles = 'platform_ml_create,taxonomy_admin,import_transformer,ais_admin,catalog_builder_editor,nlu_admin,catalog,catalog_template_editor,catalog_lookup_admin,admin,ml_admin,platform_ml_read,platform_ml_write,chat_admin,search_application_admin,search_relevancy_model_admin,import_set_loader,catalog_admin,sn_ace.ace_user,import_scheduler,pa_viewer,nlu_editor,sn_templated_snip.template_snippet_admin,sn_hr_sp.esc_admin,nlu_user,live_feed_admin,personalize_dictionary,sn_hr_sp.admin,sn_templated_snip.template_snippet_writer,evam_admin,sp_admin,ml_labeler,announcement_admin,import_admin,pa_data_collector,sn_templated_snip.template_snippet_reader,teamdev_code_reviewer,agent_security_admin,user_criteria_admin,image_admin,sn_employee.admin,sn_nlu_workbench.nlu_feedback_admin';
+	window.NOW.user.allRoles = 'platform_ml_create,taxonomy_admin,import_transformer,ais_admin,catalog_builder_editor,nlu_admin,catalog,catalog_template_editor,catalog_lookup_admin,admin,ml_admin,platform_ml_read,platform_ml_write,chat_admin,search_application_admin,search_relevancy_model_admin,import_set_loader,catalog_admin,sn_ace.ace_user,import_scheduler,pa_viewer,nlu_editor,sn_templated_snip.template_snippet_admin,sn_hr_sp.esc_admin,nlu_user,live_feed_admin,personalize_dictionary,sn_hr_sp.admin,sn_templated_snip.template_snippet_writer,evam_admin,sp_admin,ml_labeler,announcement_admin,import_admin,pa_data_collector,sn_templated_snip.template_snippet_reader,teamdev_code_reviewer,agent_security_admin,user_criteria_admin,image_admin,sn_employee.admin,sn_nlu_workbench.nlu_feedback_admin';
+	window.NOW.user.userID = '6816f79cc0a8016401c5a33be04be441';
+	window.NOW.user.departmentID = 'a581ab703710200044e0bfc8bcbe5de8';
+	window.NOW.user.firstName = 'System';
+	window.NOW.user.lastName = 'Administrator';
+	window.NOW.user.name = 'admin';
+  	window.NOW.user.isImpersonating = false;
+	window.NOW.batch_glide_ajax_requests = 'true' === 'true';
+	window.NOW.batch_glide_ajax_requests_max_time_in_queue = ~~'50';
+	window.NOW.batch_glide_ajax_disable_time = ~~'1000';
+
+	window.NOW.currency = {};
+	window.NOW.currency.code = 'INR';
+	window.NOW.locale = {};
+	window.NOW.locale.code = 'en_IN';
+
+	window.NOW.attachment = {};
+	
+	window.NOW.attachment.overflow_limit =  parseInt('3', 10);
+	window.NOW.isPolarisEnabled = "true";
+	window.NOW.polaris_page_info ={"canUsePolarisCSS":true,"canUsePolarisTemplates":true,"jvar_form_name":"sys_list_template2"};</script><script data-comment="GlideUser initialization">(function() {
+		 g_render_functions.push(setGlideUser);
+		function setGlideUser() {
+			if (window.g_user || !window.GlideUser)
+		return;
+
+		window.g_user = new GlideUser(NOW.user.name,
+			  NOW.user.firstName,
+			  NOW.user.lastName,
+			  NOW.user.roles,
+			  NOW.user.userID,
+			  NOW.user.departmentID);
+		window.g_user.setRoles(NOW.user.allRoles, true);
+		}
+	})();</script><script data-description="NOW glide web analytics siteid and url">window.snWebaConfig = window.snWebaConfig || {};
+		// glide web analytics config
+		window.snWebaConfig.siteId = "0";
+		window.snWebaConfig.trackerURL = "";
+		window.snWebaConfig.webaScriptPath = "/scripts/piwik-3.1.1/thirdparty/piwik.min.js";
+		window.snWebaConfig.ambClient = (window.g_ambClient) ? window.g_ambClient : ((window.amb)? window.amb.getClient(): "");
+		window.snWebaConfig.subscribed = false;</script><script type="text/javascript" src="/ConditionalFocus.jsdbx?v=07-23-2025_2226&amp;c=9_123"></script><script data-description="UX Metrics Data">(function () {
+				try {
+					window.NOW = window.NOW || {};
+					window.NOW.UXMetrics = window.NOW.UXMetrics || {};
+					var config = '{\"subscribers\":[{\"path\":\"/uxasset/externals/@devsnc/ux-metrics-appsee-subscriber/index.jsdbx\",\"config\":{\"apiAuth\":\"8973e544845144558f2abd96743d2e67\",\"apiKey\":\"e83e5d22db5a75d037d72a5913961914:635911e2732130107d804c9885f6a78f\",\"endpointURL\":\"https://api-appsee.service-now.com\",\"restrictedApps\":\"\",\"allowedPropsInPageNavigate\":\"Entry Page,Page Title\",\"enableUnauthenticatedUserTracking\":\"false\",\"channelType\":\"NextExperience\",\"trackingConsent\":\"Full\",\"user\":{\"domainName\":\"global\",\"roles\":\"platform_ml_create,taxonomy_admin,import_transformer,ais_admin,catalog_builder_editor,nlu_admin,catalog,catalog_template_editor,catalog_lookup_admin,admin,ml_admin,platform_ml_read,platform_ml_write,chat_admin,search_application_admin,search_relevancy_model_admin,import_set_loader,catalog_admin,sn_ace.ace_user,import_scheduler,pa_viewer,nlu_editor,sn_templated_snip.template_snippet_admin,sn_hr_sp.esc_admin,nlu_user,live_feed_admin,personalize_dictionary,sn_hr_sp.admin,sn_templated_snip.template_snippet_writer,evam_admin,sp_admin,ml_labeler,announcement_admin,import_admin,pa_data_collector,sn_templated_snip.template_snippet_reader,teamdev_code_reviewer,agent_security_admin,user_criteria_admin,image_admin,sn_employee.admin,sn_nlu_workbench.nlu_feedback_admin\",\"hashId\":\"5df770fa60fb6ae1caf0326127e92a77c844a1b5484ae8adb201a396877b22c2\",\"domainId\":\"global\"},\"enabled\":\"true\"}}],\"userConsentRequired\":false,\"globalMetricsLevel\":4}';
+					if (config) {
+						window.NOW.UXMetrics.config = JSON.parse(config);
+						window.NOW.UXMetrics.ucmInfo = {
+							user_analytics_consent_text: '',
+							user_consent : "NoConsentRequired"
+						};
+					}
+				} catch(err) {}
+			})();</script><link href="favicon.ico?v=5" rel="shortcut icon"></link><script type="text/javascript" src="/scripts/doctype/xperf_timing.jsx?v=07-23-2025_2226"></script><link type="text/css" rel="stylesheet" href="/styles/css_includes_doctype_polaris.cssx?v=07-23-2025_2226&amp;c=04fb1739c37f22105f9f784ed4013118&amp;theme=Polaris"></link><script>window.NOW = window.NOW || {};
+		 NOW.isUsingPolaris = true;</script><script type="text/javascript" src="/scripts/polaris_theme_refresh_observer.jsx?v=07-23-2025_2226"></script><link type="text/css" rel="stylesheet" href="/styles/polarisberg/css_includes_polarisberg.cssx?v=07-23-2025_2226&amp;c=04fb1739c37f22105f9f784ed4013118&amp;theme=Polaris"></link><script>NOW.exclude_dark_theme = "false";</script><link type="text/css" rel="stylesheet" href="/polarisberg_theme_variables.do?c=false3atud13Xdw6jLgjIGJ7yZeiTMjA%3D" id="polarisberg_theme_variables"></link><script>NOW.xperf.cssEnd = NOW.xperf.now();
+			NOW.xperf.scriptBegin = NOW.xperf.now();</script><script src="/legacy_date_time_choices_processor.do?lang=en"></script><script type="text/javascript" src="/scripts/doctype/js_includes_doctype.jsx?v=07-23-2025_2226&amp;lp=Fri_Sep_05_20_26_55_PDT_2025&amp;c=9_123"></script><script type="text/javascript" src="/scripts/js_includes_customer.jsx?v=07-23-2025_2226&amp;lp=Fri_Sep_05_20_26_55_PDT_2025&amp;c=9_123"></script><script type="text/javascript" src="/scripts/doctype/history_across_tabs.jsx?v=07-23-2025_2226"></script><script type="text/javascript" data-comment="navpage layout preferences, onfocus observation">/**
+	* Every window needs to observe these events.
+	*/
+	if (Prototype.Browser.IE && !isMSIE9) {
+		document.onfocusout = function() { CustomEvent.fireTop(GlideEvent.WINDOW_BLURRED, window); };
+		document.onfocusin = function() { CustomEvent.fireTop(GlideEvent.WINDOW_FOCUSED, window); };
+	} else {
+		Event.observe(window, 'blur', function() { CustomEvent.fireTop(GlideEvent.WINDOW_BLURRED, window); });
+		Event.observe(window, 'focus', function() { CustomEvent.fireTop(GlideEvent.WINDOW_FOCUSED, window); });
+	}</script><script type="text/javascript">g_swLoadTime = new StopWatch(g_loadTime);
+
+    if (window.CustomEvent){
+        CustomEvent.fireAll("ck_updated", "c9c937f9c3ff22105f9f784ed40131ae5e9b2034ac41752e6b1d1bbb3d6a46081431a493");
+	    CustomEvent.fireTop("navigation.complete", window);
+	}
+
+    addLoadEvent( function() {
+
+		if (isValidTouchDevice())
+			addTouchScrollClassToBody();
+
+      if (typeof g_ck != 'undefined') {
+        CustomEvent.observe("ck_updated", function(ck) { g_ck = ck; });
+        CustomEvent.fireAll("ck_updated", "c9c937f9c3ff22105f9f784ed40131ae5e9b2034ac41752e6b1d1bbb3d6a46081431a493");CustomEvent.fireTop('user.impersonation', '');}try {
+              var helpico = getTopWindow().document.getElementById("help_ico");
+
+              if (helpico) {
+                var urlname=window.location.pathname.split("?");
+                var search_str = window.location.search;
+                
+                // if this is a form, extract the record's sys_id...
+                var sys_id_loc = search_str.search(/sys_id=[0-9a-f]{32}/i);
+                var sys_id_str = (sys_id_loc != -1) ? search_str.substr(sys_id_loc, 39) : null;
+                
+                // make the URL to our context help processor...
+                var url_search = "?sysparm_url=" + urlname[0];
+                if (sys_id_loc != -1)
+                   url_search += "&" + sys_id_str;
+
+               	helpico.href="context_help.do" + url_search;                	
+              }
+            } catch (exception) {}
+
+      synchCache();
+      pageLoaded();
+    });
+    
+    function synchCache() {
+      try {
+        var w = getTopWindow();
+        if (w.g_cache_message)
+          w.g_cache_message.stamp("6b9a8ff1c33f22105f9f784ed40131e0");
+  
+        if (w.g_cache_td)
+          w.g_cache_td.stamp("ef97408ec33362105f9f784ed401311f");
+      } catch(e) {}
+    }
+
+    function isValidTouchDevice() {
+		var navigator = window.navigator || {};
+		var devices;
+		try {
+			devices = 'iPad,Android'.split(',');
+		} catch(ex) {
+			devices = [];
+		}
+		return devices.some(function(item) {return item.trim() === navigator.platform;});
+	}
+
+	function addTouchScrollClassToBody() {
+		if ('ontouchstart' in window ||
+				(navigator.maxTouchPoints !== 'undefined' && navigator.maxTouchPoints > 0) ||
+				(navigator.msMaxTouchPoints !== 'undefined' && navigator.msMaxTouchPoints > 0)) {
+			if (typeof document.body != undefined) {
+				document.body.classList.add('touch_scroll');
+			}
+		}
+	}
+  </script><script>window.NOW = window.NOW || {};
+        NOW.amb_themed_login = true;</script><script type="text/javascript" src="/scripts/js_includes_amb.jsx?v=07-23-2025_2226&amp;lp=Fri_Sep_05_20_26_55_PDT_2025&amp;c=9_123"></script><!--googleoff: all--><noscript>This site requires JavaScript to be enabled</noscript> <!--googleon: all--><script type="text/javascript" src="/scripts/app.guided_tours/js_guided_tours_includes.jsx?v=07-23-2025_2226"></script><script>NOW.xperf.scriptEnd = NOW.xperf.now();
+				NOW.xperf.parseEnd = NOW.xperf.now();</script></head><body class="       windows chrome        -polaris " data-formName="sys_list_template2"><span class="sr-only"><div id="html_page_aria_live_polite" role="region" aria-relevant="additions text" aria-atomic="false" aria-live="polite"></div><div id="html_page_aria_live_assertive" role="region" aria-relevant="additions text" aria-atomic="false" aria-live="assertive"></div></span><div style="margin:0px;" class="list_wrap_n_scroll"><script>
+		// GlideList2 initialization	
+	    var f = function() {
+			// register the handlers at most once per page
+			if (typeof(g_listHandlersLoaded) == 'undefined') {
+				g_listHandlersLoaded = true;
+				new GlideList2NewHandler();
+				new GlideList2ChecksHandler();
+				new GlideList2SecurityHandler();
+
+				addLoadEvent(function() {
+					CustomEvent.observe("toggle.sections", GlideList2.toggleAll);
+				});
+			}
+			// Initialize GwtListEditor for Dashboards.
+			CustomEvent.fire('init.gwt_editor');
+
+			// create the GlideList2 object for this list
+			var list = new GlideList2("u_student_progress", "u_student_progress", "");
+			list.isReport = '';
+			list.groupSort = '';
+
+			
+
+			list.setListName('u_student_progress');
+			list.setFields('u_admin_date,u_admin_number,u_english,u_father_cell,u_father_name,u_grade,u_hindi,u_maths,u_mother_cell,u_mother_name');
+			list.setTitle('Student Progress');
+			list.setListControlID('-1');
+			list.setProperties('H4sIAAAAAAAA/62VTW/bMAyG/4qhe9dlQJcWiFMM3dodtqLAtjOhWLQtlJYMSu7Hvx/lOOkC5KDMvUkk9T4URUmr65eOiifkYL0r1eLDR1Wgq7yxrinVn9+3Z5fqer36YUN8YN8jR4uhqEk3QaIXy6ur5cXnpdpaID57sV7K1FdDAO+AsWYMbakiD6iKVgfAl4oGgwbYE/7riHpDCAmio2fRrzUF8dkAQ0AGkiT2xjSBinSQuDuyBlOKn3Z276KogzWlOltMxjQZIERhuwg9+0YyC6pwusPjHsbec4SG/dDD5nXPZv8M1qXgUglyzPu4QrQxuX5tHcXDoQOCVHkgzUci1qvaIpm0eakhshwKvm1eb5BK9cV01hVfdRRTaCUpsu5xV9GoucEItefueG5PmoYxbZ1kwCSZ83zs/dBtkA/AU9ipZLdVymJ/c40cZjsPi5NIFvFWxxa5uEGiedR6FIIqCZ1Cvpf+fBdyavQ88h1rM5PZjBJZtO9yl+w8WjtKZNF+SjHCPFo3SuTR/Dt1T+dP7J6JPL97JvKue3rNMoryY0wvZ+WJsIp2fO1Jp0Fobb9XyFok30FtCbMXPeLrfwCkZgerzg//tfVfmYEz+Q4HAAA=');
+			// pass order by, since it can come from sources other than the query string
+            list.setOrderBy('');
+
+			if (list.setOmitCount) {
+				list.setOmitCount(false);
+			}
+            
+			// save the data that we will need to refresh the list
+			list.setView('');
+			list.setSubmitValue('sysparm_list_css', '');
+			list.setSubmitValue('sysparm_target', '');
+            list.setSubmitValue('sysparm_fixed_query', '');
+            list.setSubmitValue('sysparm_group_sort', '');
+            // if rows per page is specified, carry it along
+            if ('')
+               list.setSubmitValue('sysparm_rows_per_page', '');
+               
+            if ('')
+               list.setSubmitValue('sysparm_nameofstack', '');
+               
+            if ('')
+               list.setSubmitValue('sysparm_transaction_scope', '');
+               
+            if ('')
+               list.setSubmitValue('sysparm_record_scope', '');
+               
+            if ('')
+            	list.setSubmitValue('sysparm_query_no_domain', '');
+
+			list.setReferringURL("u_student_progress_list.do");list.handlePrint(true);list = null;
+		  };
+		  
+		  // hierarchical list patch - all lists have to be loaded before the context menus can be built
+		  // this is wokring by trick, not design -- code pre 25 dec 2011 had a similar trick 
+		  // better design would be to create the context menus after all the hiererchical lists are loaded
+		  if (typeof GlideList2 == "undefined")
+		  	addLoadEvent(f);
+		  else 
+		    f.call();</script><div id="u_student_progress_list" class="tabs2_list list_v2    " tab_caption="Student Progress" tab_list_name_raw="u_student_progress" tab_rows_v2="0" style="display: block;" sn-atf-blacklist="IS_LIST" data-is-excluded-role="true" data-disable-sorting="false"><span class=" -tab-body"><div id="u_student_progress_expanded" class="list-container"><div role="region" aria-label="Student Progress, filtering toolbar" id="list_nav_u_student_progress" class="navbar navbar-default list_nav list_nav_top  list_nav_top_border" style="display: block; width: 100%;" cellpadding="0" cellspacing="0" data-list_id="u_student_progress" data-has-bottom-vcr="true"><div class="container-fluid "><div class="navbar-header"><button title="List controls" class="btn btn-default icon-menu navbar-btn" data-type="list2_top_title" data-context-menu-label="List controls" id="u_student_progress_control_button" aria-hasPopup="true" aria-expanded="false" aria-label="Actions" data-list_id="u_student_progress"><span class="sr-only">List controls</span></button><button type="button" class="list_filter_toggle icon-filter btn btn-icon  " title="Show / hide filter" id="u_student_progress_filter_toggle_image" aria-controls="u_student_progressfilterdiv"><span class="sr-only">Show / hide filter</span></button><button class="list_nlq_filter_toggle icon-natural-language-query btn btn-icon" tabindex="0" title="Show / hide natural language filter" id="u_student_progress_filter_toggle_nlq_image" aria-controls="u_student_progress_nlq_filterdiv"><span class="sr-only">Show / hide natural language filter</span></button><h1 class="navbar-title list_title "><a class="list_action list_top_title" title="Student Progress Context Menu" data-list_id="u_student_progress" data-type="list2_top_title" style="border:none;" role="button" tabindex="0" aria-haspopup="menu" aria-expanded="false"><span>Student Progress</span><span class="other_lists_span" id="u_student_progress_other_lists_span"></span></a></h1></div><span id="u_student_progress_hide_search" class="nav navbar-left"><span style="float: left; display:inherit" class="list_search_title navbar-text " id="70a804cec33362105f9f784ed4013151_title">Search</span><div style="float: left; display:inherit"><div class="input-group" style="" role="search" aria-label="Student Progress"><span class="input-group-addon input-group-select"><span style="position: relative; width: 100%; display: inline-flex;"><select id="70a804cec33362105f9f784ed4013151_select" class="form-control default-focus-outline" role="listbox" aria-label="Search a specific field of the Student Progress list, 11 items"><option value="u_admin_date">Admin Date</option><option value="u_admin_number">Admin Number</option><option value="u_english">English</option><option value="u_father_cell">Father Cell</option><option value="u_father_name">Father Name</option><option value="u_grade">Grade</option><option value="u_hindi">Hindi</option><option value="u_maths">Maths</option><option value="u_mother_cell">Mother Cell</option><option value="u_mother_name">Mother Name</option></select><i class="select-indicator icon-vcr-down"></i></span></span><span id="70a804cec33362105f9f784ed4013151_describedby" class="sr-only" style="display: none;">Press Enter from within the input to submit the search.</span><input type="search" id="70a804cec33362105f9f784ed4013151_text" placeholder="Search" class="form-control" style="width: 150px;" name="70a804cec33362105f9f784ed4013151_text" aria-label="Search" aria-describedby="70a804cec33362105f9f784ed4013151_describedby"></input></div></div><script data-comment="widget search load event">addLoadEvent(function () {
+			new GlideWidgetSearch('70a804cec33362105f9f784ed4013151', 'u_student_progress', 'true', 'false');
+		});</script></span><div class="nav navbar-right text-align-right"><i data-type="list_mechanic2_open" data-list_id="u_student_progress" data-table="u_student_progress" data-parent-id="" data-view="" data-relationship="" data-title="Personalize List Columns" class="icon-cog btn btn-icon  " title="Personalize List" role="button" tabindex="0"><span class="sr-only">Personalize List</span></i><span id="34a804cec33362105f9f784ed4013151_vcr" style="direction: ltr; display: none;"><button id="34a804cec33362105f9f784ed4013151_first" name="vcr_first" data-nav="true" class="list_nav  btn btn-icon h_flip_content" title="First page" aria-label="First page"><span class="icon-vcr-left" aria-hidden="true"></span><span class="icon-vcr-left" aria-hidden="true"></span></button><button id="34a804cec33362105f9f784ed4013151_back" data-nav="true" name="vcr_back" class="list_nav  btn btn-icon h_flip_content" title="Previous page" aria-label="Previous page"><span class="icon-vcr-left" aria-hidden="true"></span></button><div class="vcr_controls"><input aria-label="Skip to row" id="listv2_34a804cec33362105f9f784ed4013151_first_row" aria-describedby="34a804cec33362105f9f784ed4013151_description_of_skip_to" class="list_row_number_input form-control  " autocomplete="off" title="Skip to row"></input><span class="sr-only" id="34a804cec33362105f9f784ed4013151_description_of_skip_to"></span><span style="margin-left: 5px;" class=" list_row_number_input ">
+					to
+					<span id="listv2_34a804cec33362105f9f784ed4013151_last_row" style="margin-left: 1px; margin-right: 1px">0</span>
+								of
+								<span id="listv2_34a804cec33362105f9f784ed4013151_total_rows" style="margin-left: 1px;">0</span></span></div><button id="34a804cec33362105f9f784ed4013151_next" data-nav="true" name="vcr_next" class="list_nav  btn btn-icon h_flip_content" title="Next page" aria-label="Next page"><span class="icon-vcr-right" aria-hidden="true"></span></button><button id="34a804cec33362105f9f784ed4013151_last" data-nav="true" name="vcr_last" class="list_nav  btn btn-icon h_flip_content" title="Last page" aria-label="Last page"><span class="icon-vcr-right" aria-hidden="true"></span><span class="icon-vcr-right" aria-hidden="true"></span></button></span><span id="34a804cec33362105f9f784ed4013151_rep_vcr" style="display: none;"><span class="list_nav_vcr list_row_number_input "><span id="34a804cec33362105f9f784ed4013151_rep_total_rows" style="padding-right: 5px;">0</span><span id="34a804cec33362105f9f784ed4013151_rep_plural_label" style="display: none;">Student Progress</span><span id="34a804cec33362105f9f784ed4013151_rep_singular_label" style="display: none;">Student Progress</span>
+                 &nbsp;
+            </span></span><script>addLoadEvent(function() {new GlideWidgetVCR('34a804cec33362105f9f784ed4013151', 'u_student_progress', false && true)})</script><span class="list_hide_empty" id="u_student_progress_choice_actions"><label for="listv2_f4a804cec33362105f9f784ed4013151_labelAction" class="sr-only">Actions on selected rows</label><select id="listv2_f4a804cec33362105f9f784ed4013151_labelAction" class="list_action_option form-control " style="display:inline-flex"><option style="color: #777;" value="x" id="ignore">Actions on selected rows...</option><option value="75a1fcce0a0a0b3400d6ed99cf8a87e0" id="75a1fcce0a0a0b3400d6ed99cf8a87e0" class="list_action_option custom_action " action_name="delete_checked" gsft_check_condition="true" gsft_base_label="Delete" gsft_is_action="true" client="true" table="global" href="confirmAndDeleteFromList()">Delete</option><script>var tblName;
+var ajaxHelper;
+var selSysIds;
+var sysIdList;
+var indx = 0;
+var numSel = 0;
+
+function confirmAndDeleteFromList() {
+    tblName = g_list.getTableName();
+    selSysIds = g_list.getChecked();
+    sysIdList = selSysIds.split(',');
+    numSel = sysIdList.length;
+
+    if(numSel > 0) {
+        indx = 0;
+        ajaxHelper = new GlideAjax('DeleteRecordAjax');
+        getCascadeDeleteTables();
+    }
+}
+
+function getCascadeDeleteTables() {
+    if(sysIdList[indx] != '') {
+        ajaxHelper.addParam('sysparm_name', 'getCascadeDeleteTables');
+        ajaxHelper.addParam('sysparm_obj_id',sysIdList[indx]);
+        ajaxHelper.addParam('sysparm_table_name', tblName);
+        ajaxHelper.addParam('sysparm_nameofstack', null);
+        ajaxHelper.getXMLAnswer(getCascadeDelTablesDoneList.bind(this), null, null);
+    }
+}
+
+function getCascadeDelTablesDoneList(answer, s) {
+    var delObjList = '';
+    var selObjName = '';
+
+    if(answer != '') {
+        var ansrArray = answer.split(';');
+        if(ansrArray.length > 1) selObjName = ansrArray[1];
+        if(ansrArray.length > 2) delObjList = ansrArray[2];
+    }
+
+    if(delObjList != '') {
+	if(numSel > 1) {
+            showListConfDlg("true", selObjName, delObjList);
+        } else {
+	    showListConfDlg("true" , '', delObjList);
+	}
+
+    } else {
+   	indx++;
+        if(indx < numSel) {
+            ajaxHelper.addParam('sysparm_name', 'getCascadeDeleteTables');
+            ajaxHelper.addParam('sysparm_table_name', tblName);
+	    ajaxHelper.addParam('sysparm_obj_id', sysIdList[indx]);
+ 	    ajaxHelper.getXMLAnswer(getCascadeDelTablesDoneList.bind(this), null, null);
+  	} else {
+	    showListConfDlg("false", '');
+	}
+    }
+}
+
+function showListConfDlg(hasCascadeDel, selObjName, delObjList) {
+	var dialogClass = typeof GlideModal != 'undefined' ? GlideModal : GlideDialogWindow;
+    var dlg = new dialogClass('delete_confirm_list');
+    var title = typeof GwtMessage !== 'undefined' ? new GwtMessage().getMessage('Confirmation') : 'Confirmation';
+    dlg.setTitle(title);
+    if(delObjList == null) {
+        dlg.setWidth(300);
+    } else {
+        dlg.setWidth(450);
+    }
+
+    dlg.setPreference('sysparm_obj_list', selSysIds);
+    dlg.setPreference('sysparm_table_name', tblName);
+    dlg.setPreference('sysparm_has_cascade_del', hasCascadeDel);
+    dlg.setPreference('sysparm_sel_obj_name', selObjName);
+    dlg.setPreference('sysparm_del_obj_list', delObjList);
+    dlg.setPreference('focusTrap', true);
+    dlg.render();
+}
+</script><script>getTopWindow().g_list_choice_action_dedupe = "true";</script><option value="df1fda3f53221010e414ddeeff7b12b2" id="df1fda3f53221010e414ddeeff7b12b2" class="list_action_option custom_action " action_name="delete_checked" gsft_check_condition="true" gsft_base_label="Delete with preview..." gsft_is_action="true" client="true" table="global" href="deleteFromList()">Delete with preview...</option><script>addLoadEvent(function() {
+									var deleteFromList = (function(GlideAjax,g_form,GlideDialogWindow,GlideRecord,window,document,$,jQuery,$$,$j,$F,gel,undefined){
+ "use strict"; 
+function deleteFromList() {	
+	var dmdelete = new GlideRecord('sys_dm_delete');
+	dmdelete.initialize();
+	dmdelete.table = g_list.getTableName();
+	dmdelete.condition = "sys_idIN" + g_list.getChecked();
+    var sysId = dmdelete.insert();
+
+	g_navigation.open('sys_dm_delete.do?sys_id=' + sysId);
+}
+ return deleteFromList.bind(null)})(GlideAjax,ScopedGFormGenerator("global"),ScopedGlideDialogWindowGenerator("global"),GlideRecord,null,null,null,null,null,null,null,null);
+									window.deleteFromList = deleteFromList;
+									});</script><script>getTopWindow().g_list_choice_action_dedupe = "true";</script><option value="c4bba10187502100deddb882a2e3ecd7" id="c4bba10187502100deddb882a2e3ecd7" class="list_action_option custom_action " action_name="add_data_to_application" gsft_check_condition="true" gsft_base_label="Create Application File" gsft_is_action="true" client="true" table="global" href="popAddMetadataDialog();">Create Application File</option><script>function popAddMetadataDialog() {	
+  	var dialog = new GlideModal('add_selected_metadata_link_dialog');
+    dialog.setTitle(new GwtMessage().getMessage('Create Application File from Record'));
+	dialog.setPreference('current_table', g_list.getTableName());
+	dialog.setPreference('sys_id_list', g_list.getChecked());
+	dialog.render();
+}</script><script>getTopWindow().g_list_choice_action_dedupe = "true";</script>
+	
+	    
+		<optgroup label=" Assign Tag:">
+		    
+		    <option client="true" href="newLabelPromptListAction('u_student_progress', 'u_student_progress');" disabled="true" gsft_base_label="New tag" gsft_row="true" label="New tag" aria-label="Assign Tag New tag" gsft_is_action="true">
+				&nbsp;&nbsp;&nbsp;New tag
+	    	</option>
+
+			
+				
+				<option class="list_action_option " gsft_check_condition="false" gsft_base_label="Android" gsft_is_action="true" client="true" aria-label="Assign Tag Android" href="assignLabelToCheckedSysIds('Android', 'u_student_progress', 'u_student_progress')">
+					&nbsp;&nbsp;&nbsp;Android
+				</option>
+				
+				<option class="list_action_option " gsft_check_condition="false" gsft_base_label="Java" gsft_is_action="true" client="true" aria-label="Assign Tag Java" href="assignLabelToCheckedSysIds('Java', 'u_student_progress', 'u_student_progress')">
+					&nbsp;&nbsp;&nbsp;Java
+				</option>
+				
+				<option class="list_action_option " gsft_check_condition="false" gsft_base_label="JavaScript" gsft_is_action="true" client="true" aria-label="Assign Tag JavaScript" href="assignLabelToCheckedSysIds('JavaScript', 'u_student_progress', 'u_student_progress')">
+					&nbsp;&nbsp;&nbsp;JavaScript
+				</option>
+				
+				<option class="list_action_option " gsft_check_condition="false" gsft_base_label="Development" gsft_is_action="true" client="true" aria-label="Assign Tag Development" href="assignLabelToCheckedSysIds('Development', 'u_student_progress', 'u_student_progress')">
+					&nbsp;&nbsp;&nbsp;Development
+				</option>
+				
+				<option class="list_action_option " gsft_check_condition="false" gsft_base_label="Security Center Suites" gsft_is_action="true" client="true" aria-label="Assign Tag Security Center Suites" href="assignLabelToCheckedSysIds('Security Center Suites', 'u_student_progress', 'u_student_progress')">
+					&nbsp;&nbsp;&nbsp;Security Center Suites
+				</option>
+				
+				<option class="list_action_option " gsft_check_condition="false" gsft_base_label="EVAM configuration for Search" gsft_is_action="true" client="true" aria-label="Assign Tag EVAM configuration for Search" href="assignLabelToCheckedSysIds('EVAM configuration for Search', 'u_student_progress', 'u_student_progress')">
+					&nbsp;&nbsp;&nbsp;EVAM configuration for Search
+				</option>
+				
+				<option class="list_action_option " gsft_check_condition="false" gsft_base_label="IT Operations Management" gsft_is_action="true" client="true" aria-label="Assign Tag IT Operations Management" href="assignLabelToCheckedSysIds('IT Operations Management', 'u_student_progress', 'u_student_progress')">
+					&nbsp;&nbsp;&nbsp;IT Operations Management
+				</option>
+				
+				<option class="list_action_option " gsft_check_condition="false" gsft_base_label="IT Asset Management" gsft_is_action="true" client="true" aria-label="Assign Tag IT Asset Management" href="assignLabelToCheckedSysIds('IT Asset Management', 'u_student_progress', 'u_student_progress')">
+					&nbsp;&nbsp;&nbsp;IT Asset Management
+				</option></optgroup>
+	    
+	    
+	    <option client="true" href="assignLabelActionViaLookupModal('u_student_progress', 'u_student_progress');" disabled="true" gsft_base_label="More..." gsft_row="true" gsft_is_action="true" aria-label="Assign Tag More...">&nbsp;&nbsp;&nbsp;More...
+	    </option>
+
+	    
+	        <optgroup label="Remove Tag:">
+				
+					
+					<option class="list_action_option " gsft_check_condition="false" gsft_base_label="Android" gsft_is_action="true" client="true" aria-label="Remove Tag Android" href="removeLabelFromCheckedSysIds('Android', 'u_student_progress')">&nbsp;&nbsp;&nbsp;Android</option>
+					
+					<option class="list_action_option " gsft_check_condition="false" gsft_base_label="Java" gsft_is_action="true" client="true" aria-label="Remove Tag Java" href="removeLabelFromCheckedSysIds('Java', 'u_student_progress')">&nbsp;&nbsp;&nbsp;Java</option>
+					
+					<option class="list_action_option " gsft_check_condition="false" gsft_base_label="JavaScript" gsft_is_action="true" client="true" aria-label="Remove Tag JavaScript" href="removeLabelFromCheckedSysIds('JavaScript', 'u_student_progress')">&nbsp;&nbsp;&nbsp;JavaScript</option>
+					
+					<option class="list_action_option " gsft_check_condition="false" gsft_base_label="Development" gsft_is_action="true" client="true" aria-label="Remove Tag Development" href="removeLabelFromCheckedSysIds('Development', 'u_student_progress')">&nbsp;&nbsp;&nbsp;Development</option>
+					
+					<option class="list_action_option " gsft_check_condition="false" gsft_base_label="Security Center Suites" gsft_is_action="true" client="true" aria-label="Remove Tag Security Center Suites" href="removeLabelFromCheckedSysIds('Security Center Suites', 'u_student_progress')">&nbsp;&nbsp;&nbsp;Security Center Suites</option>
+					
+					<option class="list_action_option " gsft_check_condition="false" gsft_base_label="EVAM configuration for Search" gsft_is_action="true" client="true" aria-label="Remove Tag EVAM configuration for Search" href="removeLabelFromCheckedSysIds('EVAM configuration for Search', 'u_student_progress')">&nbsp;&nbsp;&nbsp;EVAM configuration for Search</option>
+					
+					<option class="list_action_option " gsft_check_condition="false" gsft_base_label="IT Operations Management" gsft_is_action="true" client="true" aria-label="Remove Tag IT Operations Management" href="removeLabelFromCheckedSysIds('IT Operations Management', 'u_student_progress')">&nbsp;&nbsp;&nbsp;IT Operations Management</option>
+					
+					<option class="list_action_option " gsft_check_condition="false" gsft_base_label="IT Asset Management" gsft_is_action="true" client="true" aria-label="Remove Tag IT Asset Management" href="removeLabelFromCheckedSysIds('IT Asset Management', 'u_student_progress')">&nbsp;&nbsp;&nbsp;IT Asset Management</option></optgroup>
+	    
+	    <option client="true" href="removeLabelActionViaLookupModal('u_student_progress', 'u_student_progress');" disabled="true" gsft_base_label="More..." gsft_row="true" gsft_is_action="true" aria-label="Remove Tag More...">&nbsp;&nbsp;&nbsp;More...
+	    </option></select><script>addLoadEvent(function() {
+			new GlideWidgetActions('f4a804cec33362105f9f784ed4013151', 'u_student_progress', "of");
+
+			$j('#listv2_f4a804cec33362105f9f784ed4013151_labelAction').on({
+				'focus mousedown': function(evt) {
+					GlideListWidget.get('f4a804cec33362105f9f784ed4013151').actionCheck(evt.currentTarget, true);
+				},
+				'blur': function(evt) {
+					evt.currentTarget.setAttribute('gsft_sec_check', 'false');
+				},
+				'change': function(evt) {
+					window.lastEvent = evt;
+					GlideListWidget.get('f4a804cec33362105f9f784ed4013151').runAction(evt.currentTarget);
+					evt.currentTarget.selectedIndex = 0;
+				}
+			});
+		});</script></span><button type="submit" class="selected_action action_context btn btn-primary" onClick="return GlideList2.get('u_student_progress').action('80c8c3a60a0a0b34003364513f7d9d27', 'sysverb_new');" id="sysverb_new" value="sysverb_new" gsft_id="80c8c3a60a0a0b34003364513f7d9d27" gsft_condition="true" data-ux-list-metrics-ui-action="true" data-action-label="New" table="u_student_progress">New</button></div></div></div><div class="list_nav_top list_nav list_nav_spacer"></div><div class="list_filter_row"><div class="list_nlq_filter_container"><div id="u_student_progressnlqfilterdiv" class="list_nlq_filter" style="display:none;" gsft_empty="true"><div class="now-progress-bar-container"><span>Loading...</span><div class="now-progress-bar -md"><div class="now-progress-bar-path -initial -indeterminate"></div></div></div></div><div id="u_student_progressnlqfilterTipsdiv" class="list_nlq_filter_tips" style="display:none;"><h2 class="sr-only">NLQ List Search</h2><button href="javascript:void(0)" type="button" class="btn btn-default" aria-label="Tips for improving your queries" title="Use natural language to refine your list results and find the data you want. Query results are limited to the table that the list is created from. ">Tips for improving your queries</button></div><div id="u_student_progressnlqGenaiMessagediv" class="list_nlq_filter_genai_message_div" style="display:none;"><div class="icon-ai-sparkle-fill"></div><span class="list_nlq_filter_genai_message">NLQ support by AI</span><a href="javascript:void(0)" class="icon-info" style="text-decoration:none" aria-label="AI provided the filter in this table result based on the query. Check it for accuracy." title="AI provided the filter in this table result based on the query. Check it for accuracy."></a></div></div><script>addLoadEvent(function() {
+
+		GlideListWidgets = GlideListWidgets || {};
+
+
+		var existingWidget = GlideListWidgets['u_student_progress'];
+
+		GlideListWidgets['u_student_progress' + '_nlq'] = new GlideWidgetNLQFilter('u_student_progress', 'u_student_progress',
+		'u_student_progress', '',
+		'', false,
+		'true', 'false');
+
+		if(existingWidget) {
+			GlideListWidgets['u_student_progress'] = existingWidget;
+		}
+		})</script><script data-description="MessagesTag">(function() {
+ var messages = new GwtMessage();
+messages.set('Show / hide natural language filter');
+})()</script></div><div class="list_filter_row"><script>g_com_glide_offering = 'enterprise';
+			g_dynamic_filter_options = '16438083dbf073000aef892a48961971::Portal Knowledge Bases::::##1fd9358887203300e0ef0cf888cb0baa::Portal Catalogs::::##2a8320cbeb820110d9b201c7c152288d::OneAPI Feature Document Dynamic Filter::sys_metadata::##2ce328b2537230106d43ddeeff7b12d5::Admin Console - Chat System Messages::::##b637bd21ef3221002841f7f775c0fbb6::Subject::::sysevent_in_email_action##367bf121ef3221002841f7f775c0fbe2::Body(Text)::::sysevent_in_email_action##e009a97bef3221002841f7f775c0fb16::Recipients::::sysevent_in_email_action##2fd8e97bef3221002841f7f775c0fbc1::Sender::::sysevent_in_email_action##90d1921e5f510100a9ad2572f2b477fe::Me::sys_user::##d27bf240ef0321002841f7f775c0fbeb::Sender->Company::::sysevent_in_email_action##6d418b40ef0321002841f7f775c0fb46::Sender->Location::::sysevent_in_email_action##fa128b40ef0321002841f7f775c0fbe6::Sender->Language::::sysevent_in_email_action##0f63961e5f510100a9ad2572f2b47745::One of My Assignments::sys_user::##d6435e965f510100a9ad2572f2b47744::One of My Groups::sys_user_group::##54635e965f510100a9ad2572f2b4774c::One of My Approvals::sys_user::##32a39a165f510100a9ad2572f2b477a0::Users With Roles::sys_user::##5dfde277c7f200102e65e122c7c2604e::On-Call Groups managed by me::sys_user_group::##b5eccd2e531b01100917ddeeff7b1296::All On-Call Groups::sys_user_group::##08d5eb00c70300102e65e122c7c260f2::On-Call Groups I belong to::sys_user_group::##';</script><div><div id="u_student_progressfilterdiv" class="list_filter" style="display:none;" gsft_empty="true"><div class="list_filter_loader now-progress-bar-container"><span>Loading...</span><div class="now-progress-bar -md"><div class="now-progress-bar-path -initial -indeterminate"></div></div></div><script></script></div></div><script data-comment="load event and messages">addLoadEvent(function() {
+		  new GlideWidgetFilter('u_student_progress', 'u_student_progress', 'u_student_progress', '', 'false', false);
+		})</script></div><div class="list_message_row"><div id="output_messages" class="outputmsg_container outputmsg_hide"><button type="button" aria-label="Close Messages" id="close-messages-btn" class="btn btn-icon close icon-cross" onclick="GlideUI.get().onCloseMessagesButtonClick(this); return false;"></button><div class="outputmsg_div" aria-live="polite" role="region" data-server-messages="false"></div></div><script>addRenderEvent(function() {CustomEvent.fire('glide_optics_inspect_update_watchfield', '');});
+
+			var accessibilityEnabled = Boolean(false);
+			var hasMessages = false;
+			if (accessibilityEnabled && hasMessages) {
+				$j(function() {
+					$j('#output_messages .btn.btn-icon.close').focus();
+				});
+			}</script></div><div role="region" aria-label="Filter"><div class="breadcrumb_container" colspan="99"><span id="u_student_progress_breadcrumb" class="breadcrumb_container" table="u_student_progress" fixed_query="" role="list" list_id="u_student_progress" view=""><a filter="" draggable="true" href="javascript:void(0)" title="Click to remove subsequent conditions. Right click or press either Shift + Space or Alt + F10 to open menu." data-omit-aria-describedby="true" aria-label="All Press enter to remove all subsequent conditions. Right click or press either Shift + Space or Alt + F10 to open menu." role="link" class="breadcrumb_link"><b style="font-weight: normal;" aria-hidden="true">All</b></a></span></div></div><div class=" list_div_parent " role="main" aria-label="Student Progress"><div id="u_student_progress" class="list_div " type="list_div" snListEditContainer="false" isPolaris="true"><script type="text/javascript" data-description="list white space wrapping">// setting 
+			function setListTableWrap() {
+				if (window.NOW.listTableWrap) 
+					$j('HTML').removeClass('list-nowrap-whitespace');
+				else
+					$j('HTML').addClass('list-nowrap-whitespace');
+			}
+			
+			setListTableWrap();
+			CustomEvent.observe('table_wrap', function (trueFalse) {
+				window.NOW.listTableWrap = trueFalse; 
+				setListTableWrap();
+			});</script><a name="u_student_progress_hash" tabindex="-1"></a><button id="u_student_progress_edit" tabindex="0" type="button" class="list2-edit-button btn btn-default sn-tooltip-basic sr-only sr-only-focusable" aria-controls="u_student_progress_table" title="In inline edit mode: Press Enter to edit the selected field. Press the spacebar to open the field context menu. Press Escape to exit inline edit mode.">Edit table data inline</button><table id="u_student_progress_table" style="width: 100%; margin-bottom:0px;" class="data_list_table list_table table table-hover " query="" data-list_id="u_student_progress" parsed_query="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;xml table=&quot;u_student_progress&quot;/&gt;" role="grid" tabindex="-1" aria-label="Student Progress. " parsed_choice_query="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;xml table=&quot;u_student_progress&quot;&gt;&lt;item endquery=&quot;false&quot; field=&quot;&quot; goto=&quot;false&quot; newquery=&quot;false&quot; operator=&quot;=&quot; or=&quot;false&quot; value=&quot;&quot;/&gt;&lt;/xml&gt;" sort_dir="ASC" list_name="u_student_progress" first_row="1" last_row="0" rows_per_page="10" total_rows="0" grand_total_rows="0" can_hide_nav="false" filter-enabled="true" glide_table="u_student_progress" glide_list_can_create="true" glide_list_can_delete="true" glide_list_edit_type="" glide_list_edit_id="u_student_progress" glide_list_edit_ref_qual_tag="" glide_list_query="" glide_list_edit_insert_row="false" glide_list_has_hierarchy="false" glide_list_has_header="true" glide_list_omit_links="false" glide_list_has_actions="true" glide_list_omit_count="false" maintain_order="false"><span id="reference-list-caption" class="sr-only" aria-hidden="true"></span><caption class="sr-only" aria-live="polite" data-edit-label="Student Progress table. Currently in edit mode. Use the arrow and tab keys to navigate cells. Press enter on a cell to edit the value. Press spacebar to open the menu for a cell. Press escape to exit edit mode." data-read-label="Student Progress table. Currently in read mode. "><span>Student Progress table. Currently in read mode. </span></caption><thead><tr id="hdr_u_student_progress" class="" style=""><th align="center" class=" col-control" scope="col" style="width: 65px;"></th><th name="search" align="center" class=" col-control list-decoration-table" scope="col" style="width: 65px; vertical-align:middle;"><div><button aria-expanded="false" title="Show column search row" class="list_header_search_toggle icon-search btn btn-icon table-btn-lg" aria-controls="" style="margin-left:0px"><span class="sr-only">Show column search row</span></button></div></th><th name="u_admin_date" class="text-align-left list_header_cell list_hdr " glide_label="Admin Date" glide_field="u_student_progress.u_admin_date" composite_edit_field="" glide_type="glide_date" filterable="true" groupable="false" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="Admin Date"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">Admin Date</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="Admin Date column options" aria-expanded="false"></i></span></th><th name="u_admin_number" class="text-align-left list_header_cell list_hdr " glide_label="Admin Number" glide_field="u_student_progress.u_admin_number" composite_edit_field="" glide_type="string" filterable="true" groupable="true" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="Admin Number"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" data-context-menu-label="Admin Date column options" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">Admin Number</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="Admin Number column options" aria-expanded="false"></i></span></th><th name="u_english" class="text-align-left list_header_cell list_hdr " glide_label="English" glide_field="u_student_progress.u_english" composite_edit_field="" glide_type="string" filterable="true" groupable="true" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="English"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" data-context-menu-label="Admin Number column options" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">English</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="English column options" aria-expanded="false"></i></span></th><th name="u_father_cell" class="text-align-left list_header_cell list_hdr " glide_label="Father Cell" glide_field="u_student_progress.u_father_cell" composite_edit_field="" glide_type="string" filterable="true" groupable="true" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="Father Cell"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" data-context-menu-label="English column options" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">Father Cell</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="Father Cell column options" aria-expanded="false"></i></span></th><th name="u_father_name" class="text-align-left list_header_cell list_hdr " glide_label="Father Name" glide_field="u_student_progress.u_father_name" composite_edit_field="" glide_type="string" filterable="true" groupable="true" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="Father Name"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" data-context-menu-label="Father Cell column options" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">Father Name</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="Father Name column options" aria-expanded="false"></i></span></th><th name="u_grade" class="text-align-left list_header_cell list_hdr " glide_label="Grade" glide_field="u_student_progress.u_grade" composite_edit_field="" glide_type="choice" filterable="true" groupable="true" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="Grade"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" data-context-menu-label="Father Name column options" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">Grade</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="Grade column options" aria-expanded="false"></i></span></th><th name="u_hindi" class="text-align-left list_header_cell list_hdr " glide_label="Hindi" glide_field="u_student_progress.u_hindi" composite_edit_field="" glide_type="string" filterable="true" groupable="true" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="Hindi"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" data-context-menu-label="Grade column options" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">Hindi</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="Hindi column options" aria-expanded="false"></i></span></th><th name="u_maths" class="text-align-left list_header_cell list_hdr " glide_label="Maths" glide_field="u_student_progress.u_maths" composite_edit_field="" glide_type="string" filterable="true" groupable="true" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="Maths"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" data-context-menu-label="Hindi column options" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">Maths</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="Maths column options" aria-expanded="false"></i></span></th><th name="u_mother_cell" class="text-align-left list_header_cell list_hdr " glide_label="Mother Cell" glide_field="u_student_progress.u_mother_cell" composite_edit_field="" glide_type="string" filterable="true" groupable="true" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="Mother Cell"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" data-context-menu-label="Maths column options" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">Mother Cell</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="Mother Cell column options" aria-expanded="false"></i></span></th><th name="u_mother_name" class="text-align-left list_header_cell list_hdr " glide_label="Mother Name" glide_field="u_student_progress.u_mother_name" composite_edit_field="" glide_type="string" filterable="true" groupable="true" sortable="true" sort_dir="none" align="left" scope="col" style=";" data-type="list2_hdrcell" data-list_id="u_student_progress" role="columnheader" aria-label="Mother Name"><span class="list_header_cell_container"><a class="column_head list_hdrcell table-col-header" role="button" data-context-menu-label="Mother Cell column options" title="" tabindex="0" data-type="list2_hdrcell" data-list_id="u_student_progress">Mother Name</a><span aria-hidden="true" class="sort-icon column_header_icon"><a href="#" class="col-change-sort sort_column_header" tabindex="-1" data-type="list2_hdrcell"><i class="sort-icon-padding list-column-icon"></i></a></span><i class="icon-ellipsis-vertical col-menu list_header_context list-column-icon" aria-haspopup="true" data-type="list2_hdricon" role="button" tabindex="0" title="Column options" aria-label="Mother Name column options" aria-expanded="false"></i></span></th></tr><tr class="list_header list_header_search_row" data-open-onload="true" data-open-ongoto="true"><td></td><td></td><td name="u_admin_date" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="glide_date" data-glide-reference-name="" data-choice="0" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: admin date" class="list_header_search  form-control form-control-search"></input></div></div></div></td><td name="u_admin_number" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="string" data-glide-reference-name="" data-choice="1" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: admin number" class="list_header_search  form-control form-control-search"></input></div></div></div></td><td name="u_english" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="string" data-glide-reference-name="" data-choice="0" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: english" class="list_header_search  form-control form-control-search"></input></div></div></div></td><td name="u_father_cell" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="string" data-glide-reference-name="" data-choice="0" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: father cell" class="list_header_search  form-control form-control-search"></input></div></div></div></td><td name="u_father_name" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="string" data-glide-reference-name="" data-choice="0" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: father name" class="list_header_search  form-control form-control-search"></input></div></div></div></td><td name="u_grade" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="choice" data-glide-reference-name="" data-choice="1" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: grade" class="list_header_search  form-control form-control-search"></input></div></div></div></td><td name="u_hindi" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="string" data-glide-reference-name="" data-choice="0" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: hindi" class="list_header_search  form-control form-control-search"></input></div></div></div></td><td name="u_maths" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="string" data-glide-reference-name="" data-choice="0" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: maths" class="list_header_search  form-control form-control-search"></input></div></div></div></td><td name="u_mother_cell" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="string" data-glide-reference-name="" data-choice="0" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: mother cell" class="list_header_search  form-control form-control-search"></input></div></div></div></td><td name="u_mother_name" class="text-align-left list_hdrcell list_hdr" align="left" style="" data-type="list2_hdrcell" data-glide-type="string" data-glide-reference-name="" data-choice="0" data-list_id="u_student_progress"><div class="list_header_search"><div class="list_header_search"><div class="input-group-transparent"><input type="search" placeholder="Search" aria-label="Search column: mother name" class="list_header_search  form-control form-control-search"></input></div></div></div></td></tr></thead><tbody class="list2_body -sticky-group-headers"></tbody></table><div class="list2_empty-state-list"><div class="list-flavin"></div>No records to display</div><script>function listSubmit_7ca804cec33362105f9f784ed4013151(control) {
+	        return GlideList2.get('u_student_progress').action(control.id, control.id);
+        }</script><div class="container-fluid"><div class="row"><div class="col-xs-12"><ul class="related_links list-unstyled"></ul></div></div></div></div><div class="list_hide_empty" style="display:none"><table class="list_nav list_nav_bottom " role="presentation"><tr class="list_nav  "><td class="list_decoration col-control " rowspan="2"></td><td width="100%" class="text-align-right" nowrap="true"><span id="70a804cec33362105f9f784ed4013152_vcr" style="direction: ltr; display: none;"><button id="70a804cec33362105f9f784ed4013152_first" name="vcr_first" data-nav="true" class="list_nav  btn btn-icon h_flip_content" title="First page" aria-label="First page"><span class="icon-vcr-left" aria-hidden="true"></span><span class="icon-vcr-left" aria-hidden="true"></span></button><button id="70a804cec33362105f9f784ed4013152_back" data-nav="true" name="vcr_back" class="list_nav  btn btn-icon h_flip_content" title="Previous page" aria-label="Previous page"><span class="icon-vcr-left" aria-hidden="true"></span></button><div class="vcr_controls"><input aria-label="Skip to row" id="listv2_70a804cec33362105f9f784ed4013152_first_row" aria-describedby="70a804cec33362105f9f784ed4013152_description_of_skip_to" class="list_row_number_input form-control  " autocomplete="off" title="Skip to row"></input><span class="sr-only" id="70a804cec33362105f9f784ed4013152_description_of_skip_to"></span><span style="margin-left: 5px;" class=" list_row_number_input ">
+					to
+					<span id="listv2_70a804cec33362105f9f784ed4013152_last_row" style="margin-left: 1px; margin-right: 1px">0</span>
+								of
+								<span id="listv2_70a804cec33362105f9f784ed4013152_total_rows" style="margin-left: 1px;">0</span></span></div><button id="70a804cec33362105f9f784ed4013152_next" data-nav="true" name="vcr_next" class="list_nav  btn btn-icon h_flip_content" title="Next page" aria-label="Next page"><span class="icon-vcr-right" aria-hidden="true"></span></button><button id="70a804cec33362105f9f784ed4013152_last" data-nav="true" name="vcr_last" class="list_nav  btn btn-icon h_flip_content" title="Last page" aria-label="Last page"><span class="icon-vcr-right" aria-hidden="true"></span><span class="icon-vcr-right" aria-hidden="true"></span></button></span><span id="70a804cec33362105f9f784ed4013152_rep_vcr" style="display: none;"><span class="list_nav_vcr list_row_number_input "><span id="70a804cec33362105f9f784ed4013152_rep_total_rows" style="padding-right: 5px;">0</span><span id="70a804cec33362105f9f784ed4013152_rep_plural_label" style="display: none;">Student Progress</span><span id="70a804cec33362105f9f784ed4013152_rep_singular_label" style="display: none;">Student Progress</span>
+                 &nbsp;
+            </span></span><script>addLoadEvent(function() {new GlideWidgetVCR('70a804cec33362105f9f784ed4013152', 'u_student_progress', false && true)})</script></td><td></td></tr></table><script>addLoadEvent(function() {new GlideWidgetHideOnEmpty('34a804cec33362105f9f784ed4013152', 'u_student_progress')})</script></div></div></div></span></div><script id="context.titleMenu.u_student_progress" type="text/context">var list = GlideList2.get('u_student_progress');
+		list.titleMenu.clear();list.titleMenu.add('216ac28a0a0a0bb200af43eb879c30ae','216ac28a0a0a0bb200af43eb879c30ae','','Refresh List','action','','1000','','true');
+    list.titleMenu.add('385356ad0a0a0b7c00b3d75ea03e5eb4','385356ad0a0a0b7c00b3d75ea03e5eb4','','Show','menu','','990','','true');
+    list.titleMenu.add('b169dd7f0a0a0bbb0062fb97a5ea1e1c','b169dd7f0a0a0bbb0062fb97a5ea1e1c','','View','menu','','100','','true');
+    list.titleMenu.add('b16a5dbe0a0a0bbb00043b7b284050b6','b16a5dbe0a0a0bbb00043b7b284050b6','','Group By','menu','','500','','true');
+    list.titleMenu.add('b17a69630a0a0bbb00f2601a9fa1e2da','b17a69630a0a0bbb00f2601a9fa1e2da','','Filters','menu','','300','','true');
+    list.titleMenu.add('5333d89053301300edf6296906dc3483','--personal--','b17a69630a0a0bbb00f2601a9fa1e2da','\u003Cspan>Edit personal filters\u003C/span>','action','editPersonalFilters();','0','','false');
+    list.titleMenu.add('b16a46bd0a0a0bbb007f8195366a63c0','','b169dd7f0a0a0bbb0062fb97a5ea1e1c','Default view','action','','0','images/checked.pngx','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','--none--','b16a5dbe0a0a0bbb00043b7b284050b6','-- None --','action','groupList(\'\');','0','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_admin_number','b16a5dbe0a0a0bbb00043b7b284050b6','Admin Number','action','groupList(\'u_admin_number\');','1','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','sys_class_name','b16a5dbe0a0a0bbb00043b7b284050b6','Class','action','groupList(\'sys_class_name\');','2','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','sys_created_by','b16a5dbe0a0a0bbb00043b7b284050b6','Created by','action','groupList(\'sys_created_by\');','3','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_english','b16a5dbe0a0a0bbb00043b7b284050b6','English','action','groupList(\'u_english\');','4','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_father_cell','b16a5dbe0a0a0bbb00043b7b284050b6','Father Cell','action','groupList(\'u_father_cell\');','5','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_father_name','b16a5dbe0a0a0bbb00043b7b284050b6','Father Name','action','groupList(\'u_father_name\');','6','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_grade','b16a5dbe0a0a0bbb00043b7b284050b6','Grade','action','groupList(\'u_grade\');','7','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_hindi','b16a5dbe0a0a0bbb00043b7b284050b6','Hindi','action','groupList(\'u_hindi\');','8','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_maths','b16a5dbe0a0a0bbb00043b7b284050b6','Maths','action','groupList(\'u_maths\');','9','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_mother_cell','b16a5dbe0a0a0bbb00043b7b284050b6','Mother Cell','action','groupList(\'u_mother_cell\');','10','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_mother_name','b16a5dbe0a0a0bbb00043b7b284050b6','Mother Name','action','groupList(\'u_mother_name\');','11','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_percentage','b16a5dbe0a0a0bbb00043b7b284050b6','Percentage','action','groupList(\'u_percentage\');','12','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_result','b16a5dbe0a0a0bbb00043b7b284050b6','Result','action','groupList(\'u_result\');','13','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_science','b16a5dbe0a0a0bbb00043b7b284050b6','Science','action','groupList(\'u_science\');','14','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_social','b16a5dbe0a0a0bbb00043b7b284050b6','Social','action','groupList(\'u_social\');','15','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_student_name','b16a5dbe0a0a0bbb00043b7b284050b6','Student Name','action','groupList(\'u_student_name\');','16','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','sys_tags','b16a5dbe0a0a0bbb00043b7b284050b6','Tags','action','groupList(\'sys_tags\');','17','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_telugu','b16a5dbe0a0a0bbb00043b7b284050b6','Telugu','action','groupList(\'u_telugu\');','18','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','u_total','b16a5dbe0a0a0bbb00043b7b284050b6','Total','action','groupList(\'u_total\');','19','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','sys_updated_by','b16a5dbe0a0a0bbb00043b7b284050b6','Updated by','action','groupList(\'sys_updated_by\');','20','','false');
+    list.titleMenu.add('b179cdcb0a0a0bbb0042ab71456d775d','sys_mod_count','b16a5dbe0a0a0bbb00043b7b284050b6','Updates','action','groupList(\'sys_mod_count\');','21','','false');
+    list.titleMenu.add('385f79170a0a0b7c001c5cbbe69fc175','10','385356ad0a0a0b7c00b3d75ea03e5eb4','10 rows per page','action','showRowsPerPage(\"10\");','10','images/checked.pngx','false');
+    list.titleMenu.add('385f79170a0a0b7c001c5cbbe69fc175','15','385356ad0a0a0b7c00b3d75ea03e5eb4','15 rows per page','action','showRowsPerPage(\"15\");','15','','false');
+    list.titleMenu.add('385f79170a0a0b7c001c5cbbe69fc175','20','385356ad0a0a0b7c00b3d75ea03e5eb4','20 rows per page','action','showRowsPerPage(\"20\");','20','','false');
+    list.titleMenu.add('385f79170a0a0b7c001c5cbbe69fc175','50','385356ad0a0a0b7c00b3d75ea03e5eb4','50 rows per page','action','showRowsPerPage(\"50\");','50','','false');
+    list.titleMenu.add('385f79170a0a0b7c001c5cbbe69fc175','100','385356ad0a0a0b7c00b3d75ea03e5eb4','100 rows per page','action','showRowsPerPage(\"100\");','100','','false');
+    list.titleMenu.add('b187d9030a0a0bbb0039fce0ffe1e5c1','--none--','b17a69630a0a0bbb00f2601a9fa1e2da','-- None --','action','g_list.setFilterAndRefresh(\"\");','1','','false');
+    list.titleMenu.add('create_favorite','create_favorite', '','Create Favorite','action','showCreateFavoriteModal()','2000','','false');
+			function showCreateFavoriteModal() {
+				MagellanCreateFavorites.addFavorite({
+					title : 'Student Progress',
+					icon : 'list'
+				});
+			}if (list && list.getRelated() && list.titleMenu && GlideList2.listsMap){ list.setupRelatedListContextMenuItems(); }</script><script id="context.headerMenu.u_student_progress" type="text/context">var list = GlideList2.get('u_student_progress');
+			list.headerMenu.clear();list.headerMenu.add('2e9a63145363201025a7ddeeff7b12f4','2e9a63145363201025a7ddeeff7b12f4','','Launch Process Mining','action','','1027','','false');
+    list.headerMenu.add('3051f5050a0a0b1800eb2669f7824df3','3051f5050a0a0b1800eb2669f7824df3','','Ungroup','action','','1015','','false');
+    list.headerMenu.add('38ee56c60b3210104568c15885673abb','38ee56c60b3210104568c15885673abb','6da02f3feb4101100dba9147c1522809','Update All with preview...','action','','200','','false');
+    list.headerMenu.add('41a60a53471331004695d7527c9a7164','41a60a53471331004695d7527c9a7164','d1ad2f010a0a0b3e005c8b7fbd7c4e28','Export Set','action','','500','','false');
+    list.headerMenu.add('46d58af453121010e414ddeeff7b12cb','46d58af453121010e414ddeeff7b12cb','6da02f3feb4101100dba9147c1522809','Delete All with preview...','action','','100','','false');
+    list.headerMenu.add('4777ca1a0a0a0b285aea03289279ca97','4777ca1a0a0a0b285aea03289279ca97','','','line','','1017','','false');
+    list.headerMenu.add('4e844f3f431502108db8ac4b96b8f2eb','4e844f3f431502108db8ac4b96b8f2eb','','Bar Chart','action','','1021','','false');
+    list.headerMenu.add('5402b80e9fa322005cf3ffa4677fcf10','5402b80e9fa322005cf3ffa4677fcf10','d1ad2f010a0a0b3e005c8b7fbd7c4e28','JSON','action','','350','','false');
+    list.headerMenu.add('6da02f3feb4101100dba9147c1522809','6da02f3feb4101100dba9147c1522809','','Data Management','menu','','1112','','false');
+    list.headerMenu.add('731a31e7bf460100e628555b3f073957','731a31e7bf460100e628555b3f073957','','','line','','1300','','false');
+    list.headerMenu.add('8be9fda7bf460100e628555b3f07397b','8be9fda7bf460100e628555b3f07397b','','Import','action','','1042','','false');
+    list.headerMenu.add('8ca4cf3f431502108db8ac4b96b8f225','8ca4cf3f431502108db8ac4b96b8f225','','Pie Chart','action','','1022','','false');
+    list.headerMenu.add('a2c38e980a0a0b3000d5190f4752094c','a2c38e980a0a0b3000d5190f4752094c','','Configure','menu','','1040','','false');
+    list.headerMenu.add('ab7f76d70ad33702005f177f6d3a7145','ab7f76d70ad33702005f177f6d3a7145','','Sort (a to z)','action','','1000','','false');
+    list.headerMenu.add('ab8369ac0ad337020058ada2a743863a','ab8369ac0ad337020058ada2a743863a','','Sort (z to a)','action','','1010','','false');
+    list.headerMenu.add('ab83ca6d0ad337020037c078040600bc','ab83ca6d0ad337020037c078040600bc','','Group By','action','','1016','','false');
+    list.headerMenu.add('ab845d300ad33702008cbf08895d727b','ab845d300ad33702008cbf08895d727b','','','line','','1030','','false');
+    list.headerMenu.add('ad5756ac0ad3370200d3a60e6710d759','ad5756ac0ad3370200d3a60e6710d759','','','line','','1060','','false');
+    list.headerMenu.add('b0b807c087702100deddb882a2e3ece0','b0b807c087702100deddb882a2e3ece0','','Create Application Files','action','','1115','','false');
+    list.headerMenu.add('c144403f0a0a0b3e007ef0a823e424a7','c144403f0a0a0b3e007ef0a823e424a7','a2c38e980a0a0b3000d5190f4752094c','','line','','40','','false');
+    list.headerMenu.add('c144b37c0a0a0b3e00949d7e31182a94','c144b37c0a0a0b3e00949d7e31182a94','a2c38e980a0a0b3000d5190f4752094c','List Layout','action','','10','','false');
+    list.headerMenu.add('c229daa70a0a0b3e00bfd5294a92cb0e','c229daa70a0a0b3e00bfd5294a92cb0e','a2c38e980a0a0b3000d5190f4752094c','List Calculations','action','','20','','false');
+    list.headerMenu.add('c28441330a0a0b3e009ac756d9348c5a','c28441330a0a0b3e009ac756d9348c5a','a2c38e980a0a0b3000d5190f4752094c','List Control','action','','30','','false');
+    list.headerMenu.add('c8c2eae10a0004e30084537138ba00ed','c8c2eae10a0004e30084537138ba00ed','','Expand/Collapse All','action','','500','','true');
+    list.headerMenu.add('ceec0ea867312200bde4a82a33415a68','ceec0ea867312200bde4a82a33415a68','','Launch Interactive Analysis','action','','1026','','false');
+    list.headerMenu.add('d11613000a0a0b3e007fb501ef22352e','d11613000a0a0b3e007fb501ef22352e','','Import XML','action','','1200','','false');
+    list.headerMenu.add('d175b50d0a0a0b3e002a9f1656c89d22','d175b50d0a0a0b3e002a9f1656c89d22','','Show XML','action','','1210','','false');
+    list.headerMenu.add('d1ad2f010a0a0b3e005c8b7fbd7c4e28','d1ad2f010a0a0b3e005c8b7fbd7c4e28','','Export','menu','','1045','','false');
+    list.headerMenu.add('d1cd92f20a0a0b3e00b44ff90470380e','d1cd92f20a0a0b3e00b44ff90470380e','d1ad2f010a0a0b3e005c8b7fbd7c4e28','CSV','action','','200','','false');
+    list.headerMenu.add('d1ceb4790a0a0b3e0086e9a19b8d9657','d1ceb4790a0a0b3e0086e9a19b8d9657','d1ad2f010a0a0b3e005c8b7fbd7c4e28','XML','action','','300','','false');
+    list.headerMenu.add('d1e5d8a50a0a0b3e00459c252c81e649','d1e5d8a50a0a0b3e00459c252c81e649','d1ad2f010a0a0b3e005c8b7fbd7c4e28','PDF','menu','','400','','false');
+    list.headerMenu.add('d1e68f410a0a0b3e002c9785414de051','d1e68f410a0a0b3e002c9785414de051','d1e5d8a50a0a0b3e00459c252c81e649','Portrait','action','','100','','false');
+    list.headerMenu.add('d1e7d68b0a0a0b3e002f4618e3755d86','d1e7d68b0a0a0b3e002f4618e3755d86','d1e5d8a50a0a0b3e00459c252c81e649','Landscape','action','','200','','false');
+    list.headerMenu.add('d1e8971a0a0a0b3e00c9e1fc881affd3','d1e8971a0a0a0b3e00c9e1fc881affd3','d1e5d8a50a0a0b3e00459c252c81e649','Detailed Portrait','action','','300','','false');
+    list.headerMenu.add('d1e93cc80a0a0b3e007e913c2485c9e1','d1e93cc80a0a0b3e007e913c2485c9e1','d1e5d8a50a0a0b3e00459c252c81e649','Detailed Landscape','action','','400','','false');
+    list.headerMenu.add('f13f0041473012003db6d7527c9a71f0','f13f0041473012003db6d7527c9a71f0','d1ad2f010a0a0b3e005c8b7fbd7c4e28','Excel (.xlsx)','action','','100','','false');
+    list.headerMenu.add('f55c67f00a0a0b3e0000729159a6ed20','f55c67f00a0a0b3e0000729159a6ed20','','Update Selected','action','','1100','','false');
+    list.headerMenu.add('f55ce0730a0a0b3e00a890c8b882f1e3','f55ce0730a0a0b3e00a890c8b882f1e3','','Update All','action','','1110','','false');
+    list.headerMenu.add('f55d57090a0a0b3e00ca9bf67d92fc0e','f55d57090a0a0b3e00ca9bf67d92fc0e','','','line','','1190','','false');
+    list.headerMenu.add('1895ef3407201000e8735720e1021eda','data_policies','a2c38e980a0a0b3000d5190f4752094c','Data Policies','action','showDataPolicies(\'model_table=u_student_progress^ORmodel_tableINu_student_progress,u_salesforce\');','110','','false');
+    list.headerMenu.add('330107128f01200072a89cfde0f923c4','ui_actions','a2c38e980a0a0b3000d5190f4752094c','Notifications','action','showUIActions(\'collection=u_student_progress^ORcollectionINu_student_progress,u_salesforce\');','125','','false');
+    list.headerMenu.add('3f629b670a0a0bd501d3310795df264a','personalize_all','a2c38e980a0a0b3000d5190f4752094c','All','action','personalizeAll(\'u_student_progress\', \'Student Progress\');','50','','false');
+    list.headerMenu.add('463d0a00ff220000dadad1cb127f9dc3','security_rules','a2c38e980a0a0b3000d5190f4752094c','Security Rules','action','showSecurityRules(\'u_student_progress\');','70','','false');
+    list.headerMenu.add('96b2f2ebd71231008d7dc23c5e61031f','workflows','a2c38e980a0a0b3000d5190f4752094c','Workflows','action','showWorkflows(\'table=u_student_progress^ORtableINu_student_progress,u_salesforce^template=false\');','85','','false');
+    list.headerMenu.add('a3a9bf900a0a0b300030941abc7b2697','business_rules','a2c38e980a0a0b3000d5190f4752094c','Business Rules','action','showBusinessRules(\'collection=u_student_progress^ORcollectionINu_student_progress,u_salesforce\');','80','','false');
+    list.headerMenu.add('c114e6d10a0a0b3e0032ce8cea45faff','client_scripts','a2c38e980a0a0b3000d5190f4752094c','Client Scripts','action','showClientScripts(\'table=u_student_progress^ORtableINu_student_progress,u_salesforce\');','90','','false');
+    list.headerMenu.add('c11e69b40a0a0b3e00bd78e48646fb7f','ui_policies','a2c38e980a0a0b3000d5190f4752094c','UI Policies','action','showUIPolicies(\'table=u_student_progress^ORtableINu_student_progress,u_salesforce\');','100','','false');
+    list.headerMenu.add('c120f2730a0a0b3e00a2cca96313f847','ui_actions','a2c38e980a0a0b3000d5190f4752094c','UI Actions','action','showUIActions(\'table=u_student_progress^ORtableINu_student_progress,u_salesforce\');','120','','false');
+    list.headerMenu.add('c1228d760a0a0b3e00046e56dbd30d49','dictionary','a2c38e980a0a0b3000d5190f4752094c','Dictionary','action','showDictionary(\'name=u_student_progress^ORnameINu_student_progress,u_salesforce\');','130','','false');
+    list.headerMenu.add('e4ce64f0c3303000bac1addbdfba8f42','dictionary','a2c38e980a0a0b3000d5190f4752094c','Table','action','showTable(\'u_student_progress\');','60','','false');
+    list.headerMenu.add('26a64f613718030003a08fb77e41f193','flow_designer_flows','a2c38e980a0a0b3000d5190f4752094c','Flow Designer Flows','action','showFlows(\'u_student_progress\');','87','','false');
+    </script><script id="context.rowMenu.u_student_progress" type="text/context">var list = GlideList2.get('u_student_progress');
+			list.rowMenu.clear();list.rowMenu.add('3dce86d3c0a800664664155da3434875','3dce86d3c0a800664664155da3434875','','Assign Tag','menu','','95','','false');
+    list.rowMenu.add('e1990773c0a80a6d0f81499a5c80c069','e1990773c0a80a6d0f81499a5c80c069','','Show After','action','','25','','false');
+    list.rowMenu.add('e1d5cb8ec0a80a6d006da0404916035e','e1d5cb8ec0a80a6d006da0404916035e','','Show Before','action','','25','','false');
+    list.rowMenu.add('eaeb7ec50a0a0b3e00e0a8a429344e86','eaeb7ec50a0a0b3e00e0a8a429344e86','','Copy sys_id','action','','50','','false');
+    list.rowMenu.add('eb6c4d1b0a0a0b3e0029fbb8fee7a7a8','eb6c4d1b0a0a0b3e0029fbb8fee7a7a8','','','line','','30','','false');
+    list.rowMenu.add('ed38768dc0a80066001cd51eca319cc9','ed38768dc0a80066001cd51eca319cc9','','Show Matching','action','','10','','false');
+    list.rowMenu.add('ee21f9a7c0a8006600a47b4baccf6a83','ee21f9a7c0a8006600a47b4baccf6a83','','Filter Out','action','','20','','false');
+    list.rowMenu.add('eeca263ac0a80066000245d1d9169203','eeca263ac0a80066000245d1d9169203','','','line','','90','','false');
+    list.rowMenu.add('eadec6df0a0a0b3e00a3c8b0465c1ed9','copy_url','','Copy URL to Clipboard','action','copyURL(\'https://dev206816.service-now.com/\');','40','','false');list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','--newTag--','3dce86d3c0a800664664155da3434875','New Tag...','action','assignNewLabelAction()','100','','false');
+    list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','assign_label','3dce86d3c0a800664664155da3434875','Android','action','assignLabelAction(\'Android\')','101','','false');
+    list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','assign_label','3dce86d3c0a800664664155da3434875','Java','action','assignLabelAction(\'Java\')','102','','false');
+    list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','assign_label','3dce86d3c0a800664664155da3434875','JavaScript','action','assignLabelAction(\'JavaScript\')','103','','false');
+    list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','assign_label','3dce86d3c0a800664664155da3434875','Development','action','assignLabelAction(\'Development\')','104','','false');
+    list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','assign_label','3dce86d3c0a800664664155da3434875','Security Center Suites','action','assignLabelAction(\'Security Center Suites\')','105','','false');
+    list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','assign_label','3dce86d3c0a800664664155da3434875','EVAM configuration for Search','action','assignLabelAction(\'EVAM configuration for Search\')','106','','false');
+    list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','assign_label','3dce86d3c0a800664664155da3434875','IT Operations Management','action','assignLabelAction(\'IT Operations Management\')','107','','false');
+    list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','assign_label','3dce86d3c0a800664664155da3434875','IT Asset Management','action','assignLabelAction(\'IT Asset Management\')','108','','false');
+    list.rowMenu.add('eb7353310a0a0b3e0067aebf230c81db','--moreTags--','3dce86d3c0a800664664155da3434875','More...','action','promptWithMoreTagChoices()','109','','false');
+    </script><script data-comment="list edit js variables">g_list_edit_enable_property = 'true';
+			g_list_edit_enable = true;
+			g_list_edit_double = true;
+			g_list_edit_ignore_types = "html,document_id,conditions,template_value,glide_time,currency,price,user_image,video,field_list,domain_number,domain_path,glide_list,glide_action_list,currency2,file_attachment,translated_html";
+			g_list_edit_version_2 = "true";
+			g_list_edit_grid = "false";addLoadEvent(function() {addUnloadEvent(GlideList2.unload);});</script><SCRIPT data-comment="onCellEdit">
+</SCRIPT><script>addLoadEvent(function() { GlideList2.get('u_student_progress').loaded(); });
+
+        
+          if(false == false)
+              if(false == false)
+                  if(true == true)
+                      $j(window).on('load resize', function() {
+                          $j('.navbar .list_nav_top').css({position: 'fixed', top: 0});
+                      }).resize();</script>
+	
+	<div class="modal" id="createFavoritesModal" aria-labelledby="favorite_modal_title" name="create_favorites_modal" role="dialog">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<header class="modal-header clearfix">
+					<button data-dismiss="modal" class="btn btn-icon close icon-cross">
+						<span class="sr-only">Close</span></button>
+					<h2 id="favorite_modal_title" class="modal-title pull-left h4">Create Favorite</h2></header>
+				<form class="create-favorite" name="create_favorite_form">
+					<div class="modal-body clearfix">
+					<div id="output_messages_favorite" class="outputmsg_container outputmsg_hide compact">
+						<button aria-label="Close Messages" class="btn btn-icon close icon-cross"></button>
+						<div class="outputmsg_div" aria-live="polite" role="region" data-server-messages="false"></div></div>
+						<div id="favorite_preview"><span></span></div>
+						<label class="sr-only" for="create_favorite_title" aria-labelledby="create_favorite_title">Bookmark title</label>
+						<input type="text" id="create_favorite_title" name="title" class="form-control" value="" aria-label="Bookmark title" aria-required="true" aria-invalid="false" placeholder="Bookmark title"></input>
+						<input type="hidden" name="url" value=""></input>
+						<input type="hidden" name="window_name" value=""></input>
+						<input type="hidden" name="id" value=""></input>
+						<input type="hidden" name="color" value=""></input>
+						<div class="color-picker">
+							<fieldset id="icon_colors">
+								<legend class="sr-only">Color</legend></fieldset></div>
+						<input type="hidden" name="icon" value=""></input>
+						<div class="icon-picker">
+							<fieldset id="icon_picker" class="nav-edit-favorites-icon-grid">
+								<legend class="sr-only">Icon</legend></fieldset></div></div>
+					<div class="modal-footer">
+						<button data-dismiss="modal" type="button" class="btn btn-default">Cancel</button>
+						<button type="submit" class="btn btn-primary">Done</button></div></form>
+				<script type="text/javascript">
+					
+						window.MagellanCreateFavorites = {
+							navColors : ["purple","blue","cyan","aquamarine","green","yellow","orange","burnt-orange","red","pink","fuschia","white"],
+							navIcons : ["article-document","user","user-group","lightbulb","home","mobile","comment","mail","locked","database","book","drawer","folder","catalog","tab","cards","tree-right","tree","book-open","paperclip","edit","trash","image","search","power","cog","star","star-empty","new-ticket","dashboard","cart-full","view","label","filter","calendar","script","add","delete","help","check-circle","alert","sort-ascending","console","list","form","livefeed","key","hr"],
+							paramBlackList : ["sysparm_no_stack","sysparm_userpref_module","sysparm_record_target","sysparm_record_row","sysparm_record_rows","sysparm_record_list"]
+						};
+					</script>
+				<script type="text/javascript" src="/scripts/thirdparty/radio/radioButton.jsx?v=07-23-2025_2226"></script>
+				<script type="text/javascript" src="/scripts/thirdparty/radio/radioGroup.jsx?v=07-23-2025_2226"></script>
+				<script type="text/javascript" src="/scripts/magellan.CreateFavoriteModal.jsx?v=07-23-2025_2226"></script></div></div></div><script>CustomEvent.fireTop('magellanNavigator.historyAdded', {history : JSON.parse("{\"table\":\"u_student_progress\",\"id\":\"b8a804cec33362105f9f784ed4013154\",\"timestamp\":1757161861000,\"title\":\"Student Progress\",\"url\":\"u_student_progress_list.do?sysparm_clear_stack=true\",\"createdString\":\"2025-09-06 05:31:01\",\"prettyTitle\":\"Student Progress\",\"timestampOffset\":1757160961000}")});</script><script>(function() {
+			if (typeof openRL != 'function') {
+				openRL = function openRL() {
+					return true;
+				};
+			}
+		})();</script><script data-description="MessagesTag">(function() {
+ var messages = new GwtMessage();
+messages.set('{0} ({1})');
+messages.set('({0} of {1})');
+messages.set('%d ago');
+messages.set('%d from now');
+messages.set('just now');
+messages.set('less than a minute');
+messages.set('about a minute','%dm');
+messages.set('%d minutes','%dm');
+messages.set('about an hour');
+messages.set('about %d hours','%dh');
+messages.set('a day');
+messages.set('%d days','%dd');
+messages.set('about a month');
+messages.set('%d months','%dmo');
+messages.set('about a year');
+messages.set('about a year');
+messages.set('%d years','%dy');
+messages.set('(empty)');
+messages.set('New row');
+messages.set('New rows');
+messages.set('Insert a new row...');
+messages.set('Mark record for List Action');
+messages.set('View');
+messages.set('Delete');
+messages.set('Undelete');
+messages.set('Mark deleted');
+messages.set('Loading...');
+messages.set('A new {0} identified by {1} will be created upon save');
+messages.set('Display / hide hierarchical lists');
+messages.set('Show / hide filter');
+messages.set('Show / hide natural language filter');
+messages.set('Displays previous search result content');
+messages.set('Displays Next search result content');
+messages.set('Filtered {0} related list showing {1} to {2} of {3} records');
+messages.set('Unfiltered {0} related list showing {1} to {2} of {3} records');
+messages.set('Filtered {0} related list showing 0 records');
+messages.set('Unfiltered {0} related list showing 0 records');
+messages.set('Filtered {0} list showing {1} to {2} of {3} records');
+messages.set('Unfiltered {0} list showing {1} to {2} of {3} records');
+messages.set('Filtered {0} list showing 0 records');
+messages.set('Unfiltered {0} list showing 0 records');
+messages.set('from','From');
+messages.set('Coordinates');
+messages.set('Convert value to a different unit');
+})()</script><script>addLateLoadEvent(function() {
+							   var list = GlideList2.get('u_student_progress');
+							   if (list)
+								  list.refreshPage = true;
+							   list = null;
+							});</script><input type="hidden" id="sys_target" value="u_student_progress"></input><script data-comment="GlideUser initialization">
+		addTopRenderEvent( function() {
+			// user may have already been created
+			if (!window.g_user) {
+				window.g_user = new GlideUser('admin', 
+					  'System',
+					  'Administrator',
+					  'platform_ml_create,taxonomy_admin,import_transformer,ais_admin,catalog_builder_editor,nlu_admin,catalog,catalog_template_editor,catalog_lookup_admin,admin,ml_admin,platform_ml_read,platform_ml_write,chat_admin,search_application_admin,search_relevancy_model_admin,import_set_loader,catalog_admin,sn_ace.ace_user,import_scheduler,pa_viewer,nlu_editor,sn_templated_snip.template_snippet_admin,sn_hr_sp.esc_admin,nlu_user,live_feed_admin,personalize_dictionary,sn_hr_sp.admin,sn_templated_snip.template_snippet_writer,evam_admin,sp_admin,ml_labeler,announcement_admin,import_admin,pa_data_collector,sn_templated_snip.template_snippet_reader,teamdev_code_reviewer,agent_security_admin,user_criteria_admin,image_admin,sn_employee.admin,sn_nlu_workbench.nlu_feedback_admin',
+					  '6816f79cc0a8016401c5a33be04be441',
+					  'a581ab703710200044e0bfc8bcbe5de8');
+				window.g_user.setRoles('platform_ml_create,taxonomy_admin,import_transformer,ais_admin,catalog_builder_editor,nlu_admin,catalog,catalog_template_editor,catalog_lookup_admin,admin,ml_admin,platform_ml_read,platform_ml_write,chat_admin,search_application_admin,search_relevancy_model_admin,import_set_loader,catalog_admin,sn_ace.ace_user,import_scheduler,pa_viewer,nlu_editor,sn_templated_snip.template_snippet_admin,sn_hr_sp.esc_admin,nlu_user,live_feed_admin,personalize_dictionary,sn_hr_sp.admin,sn_templated_snip.template_snippet_writer,evam_admin,sp_admin,ml_labeler,announcement_admin,import_admin,pa_data_collector,sn_templated_snip.template_snippet_reader,teamdev_code_reviewer,agent_security_admin,user_criteria_admin,image_admin,sn_employee.admin,sn_nlu_workbench.nlu_feedback_admin', true);
+			}
+		    
+		    // We want to preload all useful client preferences that will be used by the UI. At the moment
+		    // we have to do this manually, but this should be replaced by a dynamic list.
+		    window.g_user.setPreference('glide.ui.accessibility', 'false');
+		});
+	</script><script>(function(){
+				if (NOW.isUsingPolaris) {
+					var timeOut = null;
+
+					CustomEvent.observe('content_frame.resized', debounceListResized);
+					CustomEvent.observe('frame.resized', debounceListResized);
+
+					function debounceListResized() {
+						clearTimeout(timeOut);
+						timeOut = setTimeout(listResize, 100);
+					}
+
+					function listResize() {
+						if (140 >= $j('.list_div').height())
+							$j(document.body).addClass('-zoom');
+						else
+							$j(document.body).removeClass('-zoom');
+					}
+				}
+			})()</script></div><div style="border:none; visibility:hidden"><form name="sys_personalize" method="GET" action="slushbucket.do"><input type="hidden" name="sysparm_referring_url" value="u_student_progress_list.do"></input><input type="hidden" name="sysparm_view" value=""></input></form></div><script type="text/javascript" src="/scripts/ui_page_footer.jsx?v=07-23-2025_2226"></script><span style="display:none" data-comments="js_includes_last_doctype"></span><script type="text/javascript" src="/scripts/thirdparty/dom_purify/purify.jsx?v=07-23-2025_2226&amp;sysparm_substitute=false"></script><script>NOW.xperf.lastDoctypeBegin = NOW.xperf.now();</script><script type="text/javascript" src="/scripts/doctype/js_includes_last_doctype.jsx?v=07-23-2025_2226&amp;lp=Fri_Sep_05_20_26_55_PDT_2025&amp;c=9_123"></script><script type="text/javascript" src="/scripts/heisenberg/heisenberg_all.jsx?v=07-23-2025_2226"></script><script type="text/javascript" src="/scripts/js_includes_list_edit_doctype.jsx?v=07-23-2025_2226&amp;lp=Fri_Sep_05_20_26_55_PDT_2025&amp;c=9_123"></script><script type="text/javascript" src="/scripts/transaction_scope_includes.jsx?v=07-23-2025_2226"></script><script>if ('') 
+			GlideTransactionScope.setTransactionScope('');
+		if ('') 
+			GlideTransactionScope.setRecordScope('');
+		if ('') 
+			GlideTransactionScope.setTransactionUpdateSet('');
+		if (typeof g_form != 'undefined')
+			$(g_form.getFormElement()).fire('glidescope:initialized', {gts : GlideTransactionScope});</script><span style="display:none" data-comments="requires"></span><script type="text/javascript" src="/scripts/classes/doctype/js_includes_listv2_doctype.jsx?v=07-23-2025_2226&amp;lp=Fri_Sep_05_20_26_55_PDT_2025&amp;c=9_123"></script><script type="text/javascript" src="/scripts/classes/timeAgo.jsx?v=07-23-2025_2226"></script><script>NOW.xperf.lastDoctypeEnd = NOW.xperf.now();</script><span style="display:none" data-comments="db_context_menu_script"></span><script>NOW.xperf.dbContextBegin = NOW.xperf.now();</script><script>GlideMenu.addScripts({"onScripts":{"216ac28a0a0a0bb200af43eb879c30ae":" \n","2e9a63145363201025a7ddeeff7b12f4":"function enableMenuForSupportedTypes() {\n    var hdrCell = g_list.getHeaderCell(g_fieldName);\n    if (!hdrCell)\n        return;\n}\nenableMenuForSupportedTypes();\n","3051f5050a0a0b1800eb2669f7824df3":"if (g_list.getGroupBy())\r\n   g_menu.setEnabled(g_item);\r\nelse\r\n   g_menu.setDisabled(g_item);\n","38ee56c60b3210104568c15885673abb":" \n","41a60a53471331004695d7527c9a7164":" \n","46d58af453121010e414ddeeff7b12cb":" \n","4e844f3f431502108db8ac4b96b8f2eb":"setSortable();\nsetGroupState();\nfunction setSortable() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   var sortable = (getAttributeValue(hdrCell, 'sortable') == \"true\");\n   if (sortable)\n      g_menu.setEnabled(g_item);\n   else\n      g_menu.setDisabled(g_item);\n}\nfunction setGroupState() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   \n   var groupable = (getAttributeValue(hdrCell, \"groupable\") == \"true\");\n   if ((!groupable) || (g_list.getGroupBy() == (\"GROUPBY\" + g_fieldName)))\n      g_menu.setDisabled(g_item);\n   else\n      g_menu.setEnabled(g_item);\n}\n","5402b80e9fa322005cf3ffa4677fcf10":" \n","6da02f3feb4101100dba9147c1522809":" \n","731a31e7bf460100e628555b3f073957":" \n","8be9fda7bf460100e628555b3f07397b":" \n","8ca4cf3f431502108db8ac4b96b8f225":"setSortable();\nsetGroupState();\nfunction setSortable() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   var sortable = (getAttributeValue(hdrCell, 'sortable') == \"true\");\n   if (sortable)\n      g_menu.setEnabled(g_item);\n   else\n      g_menu.setDisabled(g_item);\n}\nfunction setGroupState() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   \n   var groupable = (getAttributeValue(hdrCell, \"groupable\") == \"true\");\n   if ((!groupable) || (g_list.getGroupBy() == (\"GROUPBY\" + g_fieldName)))\n      g_menu.setDisabled(g_item);\n   else\n      g_menu.setEnabled(g_item);\n}\n","ab7f76d70ad33702005f177f6d3a7145":"setSortable();\nfunction setSortable() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   var sortable = (getAttributeValue(hdrCell, 'sortable') == \"true\" && getAttributeValue(hdrCell, 'sort_dir') != \"ASC\");\n   if (sortable)\n      g_menu.setEnabled(g_item);\n   else\n      g_menu.setDisabled(g_item);\n}\n","ab8369ac0ad337020058ada2a743863a":"setSortable();\nfunction setSortable() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   var sortable = (getAttributeValue(hdrCell, 'sortable') == \"true\" && getAttributeValue(hdrCell, 'sort_dir') != \"DESC\");\n   if (sortable)\n      g_menu.setEnabled(g_item);\n   else\n      g_menu.setDisabled(g_item);\n}\n","ab83ca6d0ad337020037c078040600bc":"setGroupLabel();\r\nsetGroupState();\r\n\r\nfunction setGroupLabel() {\r\n   var msg = getAttributeValue(g_item, 'message');\r\n   if (!msg) {\r\n      msg = g_item.innerHTML;\r\n      setAttributeValue(g_item, 'message', msg);\r\n   }\r\n   \r\n   if ('innerText' in g_item) {\r\n      g_item.innerText = msg + \" \" + g_fieldLabel;\r\n   } else {\r\n      g_item.textContent = msg + \" \" + g_fieldLabel;\r\n   }\r\n}\r\n\r\nfunction setGroupState() {\r\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\r\n   if (!hdrCell)\r\n      return;\r\n   \r\n   var groupable = (getAttributeValue(hdrCell, \"groupable\") == \"true\");\r\n   if ((!groupable) || (g_list.getGroupBy() == (\"GROUPBY\" + g_fieldName)))\r\n      g_menu.setDisabled(g_item);\r\n   else\r\n      g_menu.setEnabled(g_item);\r\n}\n","b0b807c087702100deddb882a2e3ece0":" \n","b17a69630a0a0bbb00f2601a9fa1e2da":"setFilter();\r\n\r\nfunction setFilter() {\r\n   var menu = g_item.subMenu;\r\n   var query = g_list.getQuery({groupby: true});\r\n   if (query.endsWith('^'))\r\n      query = query.substring(0, query.length - 1);\r\n\r\n   menu.clearSelected();\r\n   if (query.startsWith('^'))\r\n      query = query.substring(1);\r\n\r\n   var item = menu.getItem(query);\r\n   if (item)\r\nmenu.setImage(item, \"images/checked.pngx\");\n}\n","c8c2eae10a0004e30084537138ba00ed":"setWorkflowExpandable();\r\n\r\nfunction setWorkflowExpandable() {\r\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\r\n   if (!hdrCell)\r\n      return;\r\n\r\n   var workflow = (getAttributeValue(hdrCell, 'glide_type') == \"workflow\");\r\n   if (workflow)\r\n      g_menu.setVisible(g_item);\r\n   else\r\n      g_menu.setHidden(g_item);\r\n}\r\n","ceec0ea867312200bde4a82a33415a68":"function enableMenuForSupportedTypes() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   \n   var groupable = (getAttributeValue(hdrCell, \"groupable\") == \"true\");\n   var typeOfColumn = hdrCell.getAttribute('glide_type');\n   var isOtherSupported = typeOfColumn == \"string\" || typeOfColumn == \"integer\" || typeOfColumn == \"choice\" || typeOfColumn == \"reference\" ;\n   var dtTypes = [\"glide_date_time\",\"due_date\",\"date\",\"datetime\",\"glide_date\"];\n   var isDateTypeColumn = dtTypes.indexOf(typeOfColumn) > -1;\n   var onInteractiveAnalysis = window.SNC && window.SNC.interactiveAnalysis && window.SNC.interactiveAnalysis.isInteractiveAnalysisActive;\n    if (((groupable && isOtherSupported) || (groupable ||isDateTypeColumn)) && !onInteractiveAnalysis){\n        g_menu.setEnabled(g_item);\n    } else {\n        g_menu.setDisabled(g_item);\n    }\n}\nenableMenuForSupportedTypes();\n \n","e1990773c0a80a6d0f81499a5c80c069":"setDateColumn();\nfunction setDateColumn() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   var type = getAttributeValue(hdrCell, 'glide_type');\n   var sortable = (getAttributeValue(hdrCell, 'sortable') == \"true\");\n   var isDateTime = (type == \"glide_date_time\" || type == \"glide_date\");\n   if (isDateTime) {\n\t   if(sortable)\n\t\t  g_menu.setVisible(g_item);\n\t   else\n\t\t  g_menu.setDisabled(g_item);\n   } else\n\t   g_menu.setHidden(g_item);\n}\n","e1d5cb8ec0a80a6d006da0404916035e":"setDateColumn();\nfunction setDateColumn() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   var type = getAttributeValue(hdrCell, 'glide_type');\n   var sortable = (getAttributeValue(hdrCell, 'sortable') == \"true\");\n   var isDateTime = (type == \"glide_date_time\" || type == \"glide_date\");\n   if (isDateTime) {\n\t   if(sortable)\n\t\t  g_menu.setVisible(g_item);\n\t   else\n\t\t  g_menu.setDisabled(g_item);\n   } else\n\t   g_menu.setHidden(g_item);\n}\n","ed38768dc0a80066001cd51eca319cc9":"setMatchable();\nfunction setMatchable() {\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n   if (!hdrCell)\n      return;\n   var filterable = (getAttributeValue(hdrCell, 'filterable') == \"true\");\n   var columnOK = (hdrCell.getAttribute('glide_type') != 'related_tags' && hdrCell.getAttribute('glide_type') != 'password');\n   if (filterable && columnOK)\n      g_menu.setEnabled(g_item);\n   else\n      g_menu.setDisabled(g_item);\n}\n","ee21f9a7c0a8006600a47b4baccf6a83":"setFilterable();\nfunction setFilterable() {\n\t\n   var hdrCell = g_list.getHeaderCell(g_fieldName);\n\t\n   if (!hdrCell)\n      return;\n   var filterable = (getAttributeValue(hdrCell, 'filterable') == \"true\") && !(hdrCell.getAttribute('glide_type') == 'related_tags');\n\t   \n   if (filterable)\n      g_menu.setEnabled(g_item);\n   else\n      g_menu.setDisabled(g_item);\n}\n"},"scripts":{"1895ef3407201000e8735720e1021eda":"function showDataPolicies(query) {\n   var url = new GlideURL('sys_data_policy2_list.do');\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_query', query);\n   url.addParam('sysparm_domain_restore', 'false');\n   \n   window.location = url.getURL();\n}\n","216ac28a0a0a0bb200af43eb879c30ae":"g_list.refreshWithOrderBy(1);\n","2e9a63145363201025a7ddeeff7b12f4":"createModelDefAndRedirect();\nfunction createModelDefAndRedirect() {\n    var recSysId = \"-1\";\n    var table = g_list.getTableName();\n    var query = g_list.getQuery({\n        orderby: true,\n        fixed: true\n    });\nvar ga = new GlideAjax('global.ProminUtilsAJAX');\nga.addParam('sysparm_name', 'createModelDefFromList');\n    ga.addParam('sysparm_table', table);\n    ga.addParam('sysparm_query', query);\n    ga.getXMLWait();\n    var response = ga.getAnswer();\n    if (typeof(response) == \"string\" && response.length >= 32) {\n        recSysId = response;\n    }\n    var url = new GlideURL('promin_project.do');\n    url.addParam('sys_id', recSysId);\n    if (recSysId == \"-1\") {\ng_navigation.open(\"now/experience/promin/promin_project/-1/set-objectives\", \"_blank\");\n    }\ng_navigation.open(\"/now/experience/promin/promin_project/\" + recSysId + \"/overview\", \"_blank\");\n}\n","3051f5050a0a0b1800eb2669f7824df3":"\r\nrunContextAction();\r\n\r\nfunction runContextAction() {\r\n   g_list.setGroupBy('');\r\n   g_list.refresh(1);\r\n}\n","330107128f01200072a89cfde0f923c4":"function showUIActions(query) {\n   var url = new GlideURL('sysevent_email_action_list.do');\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_query', query);\n   url.addParam('sysparm_domain_restore', 'false');\n   \n   window.location = url.getURL();\n}\n","38ee56c60b3210104568c15885673abb":" \nrunContextAction();\nfunction runContextAction() {\n\tvar dmupdate = new GlideRecord('sys_dm_update');\n\tdmupdate.initialize();\n\tdmupdate.table = g_list.getTableName();\n\tdmupdate.condition = g_list.getQuery({fixed: true});\n    var sysId = dmupdate.insert();\n\tvar gUrl = new GlideURL('sys_dm_update.do');\n\tgUrl.addParam('sys_id', sysId);\n\twindow.location = gUrl.getURL();\n}\n","3f629b670a0a0bd501d3310795df264a":"function personalizeAll(table, label) {\n   var url = new GlideURL('personalize_all.do');\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_rules_table', table);\n   url.addParam('sysparm_rules_label', label);\n   window.location = url.getURL();\n}\n","41a60a53471331004695d7527c9a7164":"runContextAction();\nfunction runContextAction() {\n\tvar tableName = g_list.getTableName();\n\tvar fields = g_list.fields;\n\tvar query = g_list.getQuery({orderby:true});\n\t \n\tvar gr = new GlideRecord('sys_export_definition');\n\tgr.setValue('name', 'ed_t_'+tableName);\n\tgr.setValue('filter', query);\n\tgr.setValue('field_list', fields);\n\tgr.setValue('table_name', tableName);\n\tvar sysId = gr.insert();\n\t\n\tif(!sysId){\n\t\talert(\"Failed to create temporary export definition based on list view.\");\n\t}else{\n\t\tvar url = new GlideURL('sys_export_set.do');\n\t\turl.addParam('sys_id', '-1');\n\t\turl.addParam('sysparm_query', 'export_definition=' + sysId + '^name=es_t_' + tableName);\n\t\turl.addParam('sysparm_easy_export', 'true');\n\t\turl.addParam('sysparm_table', tableName);\t\t\n\t\twindow.location = url.getURL();\n\t}    \t\t\t\t\t\n} \n","463d0a00ff220000dadad1cb127f9dc3":"function showSecurityRules(tableName) {\n   var tableDef = Table.get(tableName);\n   var tables = tableDef.getTables();\n   var query = 'name=*^ORnameSTARTSWITH*.';\n   for (var i = 0;i < tables.length;i++)\n        query += '^ORname=' + tables[i] + '^ORnameSTARTSWITH' + tables[i] + '.';\n   var url = new GlideURL('sys_security_acl_list.do');\n   url.addEncodedString('sysparm_query=' + query);\n   window.location = url.getURL();\n}\n","46d58af453121010e414ddeeff7b12cb":" \nrunContextAction();\nfunction runContextAction() {\n\tvar dmdelete = new GlideRecord('sys_dm_delete');\n\tdmdelete.initialize();\n\tdmdelete.table = g_list.getTableName();\n\tdmdelete.condition = g_list.getQuery({fixed: true});\n    var sysId = dmdelete.insert();\n\tvar gUrl = new GlideURL('sys_dm_delete.do');\n\tgUrl.addParam('sys_id', sysId);\n\twindow.location = gUrl.getURL();\n}\n","4e844f3f431502108db8ac4b96b8f2eb":"runContextAction();\nfunction runContextAction() {\n    var timestamp = new Date();\n    var userName = g_user.getFullName();\nvar url = new GlideURL('now/platform-analytics-workspace/visualization-designer/new' + timestamp.getTime());\n    var tableName = g_list.getTableName();\n    var filterQuery = g_list.getQuery({\n        orderby: true,\n        fixed: true\n    });\n    var groupBy = g_fieldName;\n    var groupByLabel = g_fieldLabel;\nvar date = timestamp.toISOString().split('T')[0];\nvar time = timestamp.toTimeString().split(' ')[0];\nvar dateDisplay = date + ' ' + time;\n    var payload = JSON.stringify({\n        name: \"Bar on \" + g_list.getTitle() + \" by \" + groupByLabel + \" created by \" + userName + \": \" + dateDisplay,\n        props: visualizationProps(tableName, filterQuery, groupBy),\nmacroponentId: \"23051643b7e03010097cb81cde11a910\"\n    });\n\t\n    window.localStorage.setItem('CREATE_VIZ_FROM_EXTERNAL_CONTEXT', payload);\n    window.location = url.getURL();\n}\nfunction visualizationProps(tableName, filterQuery, groupByField) {\n    return {\n        \"additionalGroupByConfig\": [],\n        \"allowChangeDateRange\": false,\n        \"applyDateRange\": false,\n        \"bareBorder\": false,\n        \"cacheExpirationTime\": 0,\n        \"chartVariation\": \"stacked\",\n        \"colorConfig\": {\n            \"type\": \"default\"\n        },\n        \"componentId\": \"j2v5l2xh\",\n        \"configPropModifiers\": {},\n        \"configVersion\": \"23.0.0-ci-SNAPSHOT\",\n        \"contextMenuActions\": [],\n        \"dataLabelPosition\": \"middle\",\n        \"dataPassthrough\": null,\n        \"dataSources\": [{\n            \"allowRealTime\": true,\n            \"filterQuery\": filterQuery,\n            \"dataCategories\": [\"group\", \"simple\", \"trend\"],\n            \"id\": \"dGFibGVpbmNpZGVudDE3MTI2NzI1NDI2OTY=\",\n            \"isDatabaseView\": false,\n            \"preferredVisualizations\": [\"d24d53f60350de7a652caf3188a46ed2\"],\n            \"sourceType\": \"table\",\n            \"tableOrViewName\": tableName\n        }],\n        \"dateFormat\": \"default\",\n        \"emptyStateAlignment\": \"vertical-centered\",\n        \"emptyStateContent\": \"There are no scores available for the selected criteria. Contact your admin for more info.\",\n        \"emptyStateHeading\": \"No data available.\",\n        \"emptyStateIllustration\": \"no-data\",\n        \"enableClickAndStay\": false,\n        \"enableCustomEmptyState\": false,\n        \"enableDrilldown\": true,\n        \"enableRealTimeUpdate\": false,\n        \"filterConfigurations\": [],\n        \"followFilters\": true,\n        \"groupBy\": [{\n            \"disableRanges\": false,\n            \"groupBy\": [{\n                \"dataSource\": \"dGFibGVpbmNpZGVudDE3MTI2NzI1NDI2OTY=\",\n                \"groupByField\": groupByField,\n                \"isChoice\": true,\n                \"isPaBucket\": false,\n                \"isRange\": false\n            }],\n            \"maxNumberOfGroups\": 10,\n            \"numberOfGroupsBasedOn\": \"NO_OF_GROUP_BASED_ON_PER_METRIC\",\n            \"showOthers\": false\n        }],\n        \"headingLevel\": 2,\n        \"hideDevSettings\": false,\n        \"hideMatrixAggregate\": false,\n        \"legendExpandToFit\": false,\n        \"legendHorizontalAlignment\": \"center\",\n        \"legendPosition\": \"bottom\",\n        \"metrics\": [{\n            \"aggregateFunction\": \"COUNT\",\n            \"axisId\": \"primary\",\n            \"dataSource\": \"dGFibGVpbmNpZGVudDE3MTI2NzI1NDI2OTY=\",\n            \"id\": \"ZEdGaWJHVnBibU5wWkdWdWRERTNNVEkyTnpJMU5ESTJPVFk9MTcxMjY3MjU0NDYxNg==\",\n            \"numberFormat\": {\n                \"customFormat\": false\n            }\n        }],\n        \"newReporting\": false,\n        \"numberOfPeriods\": 3,\n        \"period\": \"M\",\n        \"refreshRequest\": \"\",\n        \"scoreType\": null,\n        \"selectedElements\": [],\n        \"showAbsolutePeriod\": false,\n        \"showAdditionalGroupBySelector\": false,\n        \"showBorder\": true,\n        \"showCacheTime\": true,\n        \"showChange\": false,\n        \"showChangeFrom\": \"previous\",\n        \"showChangePercentage\": false,\n        \"showClosestSeriesOnHover\": true,\n        \"showComment\": false,\n        \"showConfidenceBand\": false,\n        \"showDataLabels\": false,\n        \"showDataPassthrough\": false,\n        \"showDataTable\": false,\n        \"showDateRangeByDefault\": false,\n        \"showFilterIcon\": true,\n        \"showFirstGroupAggregate\": false,\n        \"showForecast\": false,\n        \"showForecastRange\": false,\n        \"showGapPercentage\": false,\n        \"showHeader\": true,\n        \"showHeaderSeparator\": false,\n        \"showLegend\": true,\n        \"showLegendValue\": false,\n        \"showMaximumRange\": false,\n        \"showMetricLabel\": false,\n        \"showOverlappingLabels\": false,\n        \"showSecondGroupAggregate\": false,\n        \"showSparkline\": false,\n        \"showStackedValues\": \"none\",\n        \"showSubAggregate\": false,\n        \"showTarget\": false,\n        \"showThreshold\": false,\n        \"showTotalAggregate\": false,\n        \"showTrend\": false,\n        \"sortBy\": \"value\",\n        \"sortByOrder\": \"desc\",\n        \"telemetry\": null,\n        \"useDataCache\": false,\n        \"wrapTitle\": false,\n        \"xAxisMaxLabelSize\": 100,\n        \"xAxisTruncationType\": \"end\",\n        \"xAxisWrapLabels\": false,\n        \"yAxisHidden\": false,\n        \"yAxisPosition\": \"bottom\",\n        \"yAxisShowGrid\": true,\n        \"yAxisStyle\": \"clean\"\n    };\n}\n","5333d89053301300edf6296906dc3483":" \nfunction editPersonalFilters() {\n   var url = new GlideURL(\"sys_filter_list.do\");\n   url.addEncodedString(\"sysparm_query=table%3D\" + g_list.tableName + \"^user%3D\" + g_user.userID);\n   self.location = url.getURL();\n}\n","5402b80e9fa322005cf3ffa4677fcf10":"runContextAction();\n function runContextAction() {\n    var exportHandler = new ContextMenuExportHandler(g_list,'unload_json');\n    exportHandler.exportRecords();\n }\n \n","6da02f3feb4101100dba9147c1522809":" \n","731a31e7bf460100e628555b3f073957":" \n","8be9fda7bf460100e628555b3f07397b":"runContextAction();\nfunction runContextAction() {\n\tvar url = new GlideURL('import_template_upload.do');\n\tvar referringUrl = g_list.getReferringURL();\n\turl.addParam('sysparm_referring_url', referringUrl);\n\turl.addParam('sysparm_target', g_list.getTableName());\n\t\n\turl.addParam('sysparm_rows', g_list.grandTotalRows);\n\turl.addParam('sysparm_view', g_list.view);\n\t\n\tvar tinyQuery = \"sysparm_tiny=\";\n\tvar tinyIndex = referringUrl.indexOf(tinyQuery);\nif (tinyIndex == -1)\n\t\turl.addParam('sysparm_query', g_list.getQuery({orderby: true, fixed: true}));\nelse {\n\t\tvar tinyUrlId = referringUrl.substring(tinyIndex + tinyQuery.length);\n\t\turl.addParam('sysparm_tiny', tinyUrlId);\n\t}\n\t\n\twindow.location = url.getURL();\n}\n","8ca4cf3f431502108db8ac4b96b8f225":"runContextAction();\nfunction runContextAction() {\n    var timestamp = new Date();\n    var userName = g_user.getFullName();\nvar url = new GlideURL('now/platform-analytics-workspace/visualization-designer/new' + timestamp.getTime());\n    var tableName = g_list.getTableName();\n    var filterQuery = g_list.getQuery({\n        orderby: true,\n        fixed: true\n    });\n    var groupBy = g_fieldName;\n    var groupByLabel = g_fieldLabel;\nvar date = timestamp.toISOString().split('T')[0];\nvar time = timestamp.toTimeString().split(' ')[0];\nvar dateDisplay = date + ' ' + time;\n    var payload = JSON.stringify({\n        name: \"Pie on \" + g_list.getTitle() + \" by \" + groupByLabel + \" created by \" + userName + \": \" + dateDisplay,\n        props: visualizationProps(tableName, filterQuery, groupBy),\nmacroponentId: \"96abe7e38d8790718022c5630a92176c\"\n    });\n    window.localStorage.setItem('CREATE_VIZ_FROM_EXTERNAL_CONTEXT', payload);\n    window.location = url.getURL();\n}\nfunction visualizationProps(tableName, filterQuery, groupByField) {\n    return {\n        \"additionalGroupByConfig\": [],\n        \"allowChangeDateRange\": false,\n        \"applyDateRange\": false,\n        \"bareBorder\": false,\n        \"cacheExpirationTime\": 0,\n        \"colorConfig\": {\n            \"type\": \"default\"\n        },\n        \"componentId\": \"b8do2jsn\",\n        \"configPropModifiers\": {},\n        \"configVersion\": \"23.0.0-ci-SNAPSHOT\",\n        \"contextMenuActions\": [],\n        \"dataLabelsType\": \"both\",\n        \"dataPassthrough\": null,\n        \"dataSources\": [{\n            \"allowRealTime\": true,\n            \"dataCategories\": [\"group\", \"simple\", \"trend\"],\n            \"id\": \"dGFibGVpbmNpZGVudDE3MTI3NTE2MTYzOTA=\",\n            \"isDatabaseView\": false,\n            \"filterQuery\": filterQuery,\n            \"preferredVisualizations\": [\"d24d53f60350de7a652caf3188a46ed2\"],\n            \"sourceType\": \"table\",\n            \"tableOrViewName\": tableName\n        }],\n        \"dateFormat\": \"default\",\n        \"emptyStateAlignment\": \"vertical-centered\",\n        \"emptyStateContent\": \"There are no scores available for the selected criteria. Contact your admin for more info.\",\n        \"emptyStateHeading\": \"No data available.\",\n        \"emptyStateIllustration\": \"no-data\",\n        \"enableClickAndStay\": false,\n        \"enableCustomEmptyState\": false,\n        \"enableDrilldown\": true,\n        \"enableRealTimeUpdate\": false,\n        \"filterConfigurations\": [],\n        \"followFilters\": true,\n        \"groupBy\": [{\n            \"disableRanges\": false,\n            \"groupBy\": [{\n                \"dataSource\": \"dGFibGVpbmNpZGVudDE3MTI3NTE2MTYzOTA=\",\n                \"groupByField\": groupByField,\n                \"isChoice\": true,\n                \"isPaBucket\": false,\n                \"isRange\": false\n            }],\n            \"maxNumberOfGroups\": 10,\n            \"numberOfGroupsBasedOn\": \"NO_OF_GROUP_BASED_ON_PER_METRIC\",\n            \"showOthers\": false\n        }],\n        \"headingLevel\": 2,\n        \"hideDevSettings\": false,\n        \"hideMatrixAggregate\": false,\n        \"legendExpandToFit\": false,\n        \"legendHorizontalAlignment\": \"center\",\n        \"metrics\": [{\n            \"aggregateFunction\": \"COUNT\",\n            \"axisId\": \"primary\",\n            \"dataSource\": \"dGFibGVpbmNpZGVudDE3MTI3NTE2MTYzOTA=\",\n            \"id\": \"ZEdGaWJHVnBibU5wWkdWdWRERTNNVEkzTlRFMk1UWXpPVEE9MTcxMjc1MTYxODg5MQ==\",\n            \"numberFormat\": {\n                \"customFormat\": false\n            }\n        }],\n        \"newReporting\": false,\n        \"numberOfPeriods\": 3,\n        \"period\": \"M\",\n        \"refreshRequest\": \"\",\n        \"registerOrientation\": \"horizontal\",\n        \"registerPosition\": \"bottom\",\n        \"scoreType\": null,\n        \"selectedElements\": [],\n        \"showAbsolutePeriod\": false,\n        \"showAdditionalGroupBySelector\": false,\n        \"showBorder\": true,\n        \"showCacheTime\": true,\n        \"showChange\": false,\n        \"showChangeFrom\": \"previous\",\n        \"showChangePercentage\": false,\n        \"showComment\": false,\n        \"showConfidenceBand\": false,\n        \"showDataLabels\": false,\n        \"showDataPassthrough\": false,\n        \"showDataTable\": false,\n        \"showDateRangeByDefault\": false,\n        \"showFilterIcon\": true,\n        \"showFirstGroupAggregate\": false,\n        \"showForecast\": false,\n        \"showForecastRange\": false,\n        \"showGapPercentage\": false,\n        \"showHeader\": true,\n        \"showHeaderSeparator\": false,\n        \"showMaximumRange\": false,\n        \"showMetricLabel\": false,\n        \"showRegister\": true,\n        \"showRegisterOnSameLine\": false,\n        \"showRegisterPercentage\": false,\n        \"showRegisterValue\": false,\n        \"showSecondGroupAggregate\": false,\n        \"showSparkline\": false,\n        \"showSubAggregate\": false,\n        \"showTarget\": false,\n        \"showThreshold\": false,\n        \"showTotalAggregate\": false,\n        \"showTrend\": false,\n        \"sortBy\": \"value\",\n        \"sortByOrder\": \"desc\",\n        \"telemetry\": null,\n        \"truncationType\": \"end\",\n        \"useDataCache\": false,\n        \"wrapTitle\": false\n    }\n}\n","96b2f2ebd71231008d7dc23c5e61031f":" function showWorkflows(query) {  \n   var url = new GlideURL('wf_workflow_version_list.do');\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_query', query );\n   url.addParam('sysparm_domain_restore', 'false');\n \n   window.location = url.getURL();\n }\n","a3a9bf900a0a0b300030941abc7b2697":"function showBusinessRules(query) {\n   var url = new GlideURL('sys_script_list.do');\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_query', query);\n   url.addParam('sysparm_domain_restore', 'false');\n   window.location = url.getURL();\n}\n","ab7f76d70ad33702005f177f6d3a7145":"runContextAction();\nfunction runContextAction() {\n   g_list.sort(g_fieldName);\n}\n","ab8369ac0ad337020058ada2a743863a":"runContextAction();\nfunction runContextAction() {\n   g_list.sortDescending(g_fieldName);\n}\n","ab83ca6d0ad337020037c078040600bc":"\r\nrunContextAction();\r\n\r\nfunction runContextAction() {\r\n   g_list.setGroupBy(g_fieldName);\r\n   g_list.refresh(1);\r\n}\n","b0b807c087702100deddb882a2e3ece0":"popAddMetadataDialog(); \nfunction popAddMetadataDialog() {\t\n  \tvar dialog = new GlideModal('add_selected_metadata_link_dialog');\n    dialog.setTitle(new GwtMessage().getMessage('Create Application Files from Records'));\n    dialog.setPreference('current_query', g_list.getQuery());\n\tdialog.setPreference('current_table', g_list.getTableName());\n\tdialog.render();\n}\n","b169dd7f0a0a0bbb0062fb97a5ea1e1c":"\r\n","b16a46bd0a0a0bbb007f8195366a63c0":"function changeView(view) {\r\n   var url = new GlideURL(g_list.getTableName() + '_list.do');\r\n   url.addParam('sysparm_view', view);\r\n   url.addParam('sysparm_userpref.' + g_list.getTableName() + '_list.view', view);\r\n   url.addParam('sysparm_userpref.' + g_list.getTableName() + '.view', view);\r\n   url.addParam('sysparm_query', g_list.getQuery({groupby: true}));\r\n   url.addParam('sysparm_fixed_query', g_list.getFixedQuery());\r\n   window.location = url.getURL();\r\n}\n","b179cdcb0a0a0bbb0042ab71456d775d":"function groupList(fieldName) {\n   g_list.setGroupBy(fieldName);\n   g_list.refresh(1);\n}\n","c114e6d10a0a0b3e0032ce8cea45faff":" function showClientScripts(query) {  \n    var url = new GlideURL('sys_script_client_list.do');\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_query', query);\n   url.addParam('sysparm_domain_restore', 'false');\n \n   window.location = url.getURL();\n }\n","c11e69b40a0a0b3e00bd78e48646fb7f":"function showUIPolicies(query) {\n   var url = new GlideURL('sys_ui_policy_list.do');\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_query', query);\n   url.addParam('sysparm_domain_restore', 'false');\n   \n   window.location = url.getURL();\n}\n","c120f2730a0a0b3e00a2cca96313f847":"function showUIActions(query) {\n   var url = new GlideURL('sys_ui_action_list.do');\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_query', query);\n   url.addParam('sysparm_domain_restore', 'false');\n   \n   window.location = url.getURL();\n}\n","c1228d760a0a0b3e00046e56dbd30d49":"function showDictionary(query) {\n   var url = new GlideURL('sys_dictionary_list.do');\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_query', query);\n   url.addParam('sysparm_domain_restore', 'false');\n   \n   window.location = url.getURL();\n}\n","c144b37c0a0a0b3e00949d7e31182a94":" \nrunContextAction();\nfunction runContextAction() {\n   var url = new GlideURL('slushbucket.do');\n   url.addParam('sysparm_view', g_list.getView());\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\n   url.addParam('sysparm_form', 'list');\n   url.addParam('sysparm_user_list', g_list.isUserList().toString());\n   url.addParam('sysparm_list', g_list.tableName);\n   url.addParam('sysparm_collection', g_list.getParentTable());\n   var rel = g_list.getSubmitValue('sysparm_collection_relationship');\n   if (rel)\n      url.addParam('sysparm_collection_relationship' , rel);\n   \n   window.location = url.getURL();\n}\n","c229daa70a0a0b3e00bfd5294a92cb0e":"runContextAction();\nfunction runContextAction() {\n   var g = new GlideDialogWindow('Calculations');\n   g.setTitle(g_fieldLabel + ' (calculations)');\n   g.setDialog('personalize_aggregate');\n   g.setPreference(\"sysparm_list\", g_list.tableName);\n   g.setPreference(\"sysparm_list_element\", g_fieldName);\n   \n   var view = g_list.view;\n   if (!view)\n      view = '';\n   g.setPreference(\"sysparm_list_view\", view);\n   \n   var collection = g_list.getParentTable();\n   if (!collection)\n      collection = '';\n   g.setPreference(\"sysparm_list_parent\", collection);\n   \n   var rel = g_list.getSubmitValue('sysparm_collection_relationship');\n   if (!rel)\n      rel = '';\n   g.setPreference(\"sysparm_list_relationship\", rel);\n   g.render();\n}\n","c28441330a0a0b3e009ac756d9348c5a":"runContextAction();\nfunction runContextAction() {\n   var query;\n   var parentName = g_list.getParentTable();\n   if (parentName) {\n      var query = 'name=' + g_list.getParentTable();\n      query += '^related_list=' + g_list.getRelated();\n   } else\n      query = \"name=\" + g_list.getTableName() + \"^related_list=\";\n   var url;\n   if (!g_list.isEmbedded())\n      url = new GlideURL('sys_ui_list_control.do');\n   else\n      url = new GlideURL('sys_ui_list_control_embedded.do');\n   url.addParam('sys_id', g_list.getListControlID());\n   if (query)\n      url.addEncodedString(\"&sysparm_query=\" + query);\n   window.location = url.getURL();\n}\n","c8c2eae10a0004e30084537138ba00ed":"\r\nexpandThisColumn();\r\nfunction expandThisColumn() {\r\n  var cp = getPreference('workflow.expanded.' + g_list.getTableName());\r\n  setPreference('workflow.expanded.' + g_list.getTableName(), cp == 'true' ? 'false' : 'true');\r\n  toggleItems(null, cp);\r\n}\n","ceec0ea867312200bde4a82a33415a68":"runContextAction();\nfunction runContextAction() {\n   var url = new GlideURL('$interactive_analysis.do');\n   url.addParam('sysparm_field', g_fieldName);\n   url.addParam('sysparm_table', g_list.getTableName());\n   url.addParam('sysparm_from_list', 'true');\n   url.addParam('sysparm_query', g_list.getQuery({orderby: true, fixed: true}));\n   url.addParam('sysparm_list_view', g_list.getView());\n   var frames = window.top.document.getElementsByTagName(\"iframe\");\n   var frameToLoad = null;\n   if (typeof frames !== \"undefined\" && frames.length > 0) {\n        for(var i=0;i<frames.length;i++){\n            if(frames[i].name === \"gsft_main\"){\n                frameToLoad = frames[i];\n            }\n        }\n        if(frameToLoad !== null){\n            frameToLoad.contentWindow.location = url.getURL();\n        }else{\n            frames[0].contentWindow.parent.location = url.getURL();\n        }\n   } else {\n       window.location = url.getURL();\n   }\n}\n \n","d11613000a0a0b3e007fb501ef22352e":"runContextAction();\r\n\r\nfunction runContextAction() {\r\n   var url = new GlideURL('upload.do');\r\n   url.addParam('sysparm_referring_url', g_list.getReferringURL());\r\n   url.addParam('sysparm_target', g_list.getTableName());\r\n   \r\n   window.location = url.getURL();\r\n}\n","d175b50d0a0a0b3e002a9f1656c89d22":"runContextAction();\n \nfunction runContextAction() {\n    var url = new GlideURL(g_list.getTableName() + '_list.do');\n    url.addParam('sysparm_query', g_list.getQuery());\n    url.addParam('XML','');\n    var win = window.open(\"blank.do\", \"xmlview\", \"width=700,height=500,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollbars=1\");\n\t\n\tif(isMSIE8) {\n   \t    var referLink = document.createElement('a');\n        referLink.href = url.getURL();\n\t    referLink.target=\"xmlview\";\n        document.body.appendChild(referLink);\n        referLink.click();\n\t} else \n\t    win.location.href = url.getURL();\n}\n","d1cd92f20a0a0b3e00b44ff90470380e":" runContextAction();\n  \n function runContextAction() {\n    var exportHandler = new ContextMenuExportHandler(g_list,'unload_csv');\n    exportHandler.exportRecords();\n }\n","d1ceb4790a0a0b3e0086e9a19b8d9657":"runContextAction();\nfunction runContextAction() {\n    var exportHandler = new ContextMenuExportHandler(g_list,'unload_xml');\n    exportHandler.exportRecords();\n}\n","d1e68f410a0a0b3e002c9785414de051":"runContextAction();\nfunction runContextAction() {\n   \n   var sysparm_rows = g_list.grandTotalRows;\n   var num_rows = parseInt(sysparm_rows);\n   var sysparm_query = g_list.getQuery({all: true});\n   \n   var sysparm_view = g_list.view;\n   if (num_rows < g_export_warn_threshold) {\n      var dialog = new GwtPollDialog(g_list.tableName, sysparm_query, sysparm_rows, sysparm_view, 'unload_pdf');\n      dialog.execute();\n      return;\n   }\n   var dialog = new GwtExportScheduleDialog(g_list.tableName, sysparm_query, sysparm_rows, sysparm_view, 'unload_pdf');\n   dialog.execute();\n}\n","d1e7d68b0a0a0b3e002f4618e3755d86":"runContextAction();\nfunction runContextAction() {\n   \n   var sysparm_rows = g_list.grandTotalRows;\n   var num_rows = parseInt(sysparm_rows);\n   var sysparm_query = g_list.getQuery({all: true});\n   var sysparm_view = g_list.view;\n   if (num_rows < g_export_warn_threshold) {\n      var dialog = new GwtPollDialog(g_list.tableName, sysparm_query, sysparm_rows, sysparm_view, 'unload_pdflandscape');\n      dialog.execute();\n      return;\n   }\n   var dialog = new GwtExportScheduleDialog(g_list.tableName, sysparm_query, sysparm_rows, sysparm_view, 'unload_pdflandscape');\n   dialog.execute();\n}\n","d1e8971a0a0a0b3e00c9e1fc881affd3":"runContextAction();\nfunction runContextAction() {\n   var sysparm_rows = g_list.grandTotalRows;\n   var num_rows = parseInt(sysparm_rows);\n   var sysparm_query = g_list.getQuery({all: true});\n   \n   var sysparm_view = g_list.view;\n   if (num_rows < g_export_warn_threshold) {\n      var dialog = new GwtPollDialog(g_list.tableName, sysparm_query, sysparm_rows, sysparm_view, 'unload_pdf+');\n      dialog.execute();\n      return;\n   }\n   var dialog = new GwtExportScheduleDialog(g_list.tableName, sysparm_query, sysparm_rows, sysparm_view, 'unload_pdf+');\n   dialog.execute();\n}\n","d1e93cc80a0a0b3e007e913c2485c9e1":"runContextAction();\nfunction runContextAction() {\n   \n   var sysparm_rows = g_list.grandTotalRows;\n   var num_rows = parseInt(sysparm_rows);\n   var sysparm_query = g_list.getQuery({all: true});\n   \n   var sysparm_view = g_list.view;\n   if (num_rows < g_export_warn_threshold) {\n      var dialog = new GwtPollDialog(g_list.tableName, sysparm_query, sysparm_rows, sysparm_view, 'unload_pdf+landscape');\n      dialog.execute();\n      return;\n   }\n   var dialog = new GwtExportScheduleDialog(g_list.tableName, sysparm_query, sysparm_rows, sysparm_view, 'unload_pdf+landscape');\n   dialog.execute();\n}\n","e1990773c0a80a6d0f81499a5c80c069":"runContextAction();\nfunction runContextAction() {\n   var ajax = new GlideAjax(\"RowFieldQueryTerm\");\n   ajax.addParam('table', g_list.tableName);\n   ajax.addParam('field_name', g_fieldName);\n   ajax.addParam('sys_id', g_sysId);\n   ajax.addParam('oper', '>=');\n   ajax.getXML(rowAndFieldQueryTermResponse, \"\", g_list.listID);\n}\nfunction rowAndFieldQueryTermResponse(response, listID) {\n   if (!response || !response.responseXML)\n      return;\n   var items = response.responseXML.getElementsByTagName(\"item\");\n   var item = items[0];\n   if (!item)\n      return;\n   var term = item.getAttribute(\"term\");\n   var list = GlideList2.get(listID);\n   list.addFilter(term);\n   list.refresh(1);\n}\n","e1d5cb8ec0a80a6d006da0404916035e":"runContextAction();\nfunction runContextAction() {\n   var ajax = new GlideAjax(\"RowFieldQueryTerm\");\n   ajax.addParam('table', g_list.tableName);\n   ajax.addParam('field_name', g_fieldName);\n   ajax.addParam('sys_id', g_sysId);\n   ajax.addParam('oper', '<=');\n   ajax.getXML(rowAndFieldQueryTermResponse, \"\", g_list.listID);\n}\nfunction rowAndFieldQueryTermResponse(response, listID) {\n   if (!response || !response.responseXML)\n      return;\n   var items = response.responseXML.getElementsByTagName(\"item\");\n   var item = items[0];\n   if (!item)\n      return;\n   var term = item.getAttribute(\"term\");\n   var list = GlideList2.get(listID);\n   list.addFilter(term);\n   list.refresh(1);\n}\n","e4ce64f0c3303000bac1addbdfba8f42":"function showTable(table) {\n    var url = new GlideURL('sys_db_object.do');\n    url.addParam('sys_id', table);\n    url.addParam('sysparm_refkey', 'name');\n    url.addParam('sysparm_domain_restore', 'false');\n    url.addParam('sysparm_referring_url', g_list.getReferringURL());\n    \n    window.location = url.getURL();\n}\n","eadec6df0a0a0b3e00a3c8b0465c1ed9":" function copyURL(uri) {\r\n      copyRowToClipboard(uri, g_list.tableName, g_sysId, g_list.view); \r\n }\n","eaeb7ec50a0a0b3e00e0a8a429344e86":" runContextAction();\r\n \r\n function runContextAction() {\r\n     copyToClipboard(g_sysId); \r\n }\n","eb6c4d1b0a0a0b3e0029fbb8fee7a7a8":"\r\n","ed38768dc0a80066001cd51eca319cc9":"runContextAction();\nfunction runContextAction() {\n   var ajax = new GlideAjax(\"RowFieldQueryTerm\");\n   ajax.addParam('table', g_list.tableName);\n   ajax.addParam('field_name', g_fieldName);\n   ajax.addParam('sys_id', g_sysId);\n   ajax.addParam('oper', '=');\n   ajax.getXML(rowAndFieldQueryTermResponse, \"\", g_list.listID);\n}\nfunction rowAndFieldQueryTermResponse(response, listID) {\n   if (!response || !response.responseXML)\n      return;\n   var items = response.responseXML.getElementsByTagName(\"item\");\n   var item = items[0];\n   if (!item)\n      return;\n   var term = item.getAttribute(\"term\");\n   var list = GlideList2.get(listID);\n   list.addFilter(term);\n   list.refresh(1);\n}\n","ee21f9a7c0a8006600a47b4baccf6a83":"runContextAction();\nfunction runContextAction() {\n   var ajax = new GlideAjax(\"RowFieldQueryTerm\");\n   ajax.addParam('table', g_list.tableName);\n   ajax.addParam('field_name', g_fieldName);\n   ajax.addParam('sys_id', g_sysId);\n   ajax.addParam('oper', '!=');\n   ajax.getXML(rowAndFieldQueryTermResponse, \"\", g_list.listID);\n}\nfunction rowAndFieldQueryTermResponse(response, listID) {\n   if (!response || !response.responseXML)\n      return;\n   var items = response.responseXML.getElementsByTagName(\"item\");\n   var item = items[0];\t\n   if (!item)\n      return;\n\t\t\n   var term = item.getAttribute(\"term\");\n   var list = GlideList2.get(listID);\n   list.addFilter(term);\n   list.refresh(1);\n}\n","eeca263ac0a80066000245d1d9169203":"\r\n","f13f0041473012003db6d7527c9a71f0":" runContextAction();\n function runContextAction() {\n    var exportHandler = new ContextMenuExportHandler(g_list,'unload_excel_xlsx');\n    exportHandler.exportRecords();\n }\n","f55c67f00a0a0b3e0000729159a6ed20":"runContextAction();\r\n\r\nfunction runContextAction() {\r\n   var keys = g_list.getChecked();\r\n   if (keys == '') {\r\n      var msg = new GwtMessage().getMessage('There are no rows selected');\r\n      alert(msg);\r\n      return;\r\n   }\r\n   \r\n   var url = new GlideURL(g_list.tableName + '_update.do');\r\n   url.addParam('sys_action', 'sysverb_multiple_update');\r\n   url.addParam('sysparm_multiple', 'true');\r\n   url.addParam('sysparm_nostack', 'yes');\r\n   url.addParam('sysparm_checked_items', 'sys_idIN' + keys);\r\n   url.addParam('sysparm_view', g_list.getView());\r\n   \r\n   window.location = url.getURL();\r\n}\n","f55ce0730a0a0b3e00a890c8b882f1e3":"runContextAction();\nfunction runContextAction() {\n   var url = new GlideURL(g_list.tableName + '_update.do');\n   url.addParam('sys_action', 'sysverb_multiple_update');\n   url.addParam('sysparm_multiple', 'true');\n   url.addParam('sysparm_nostack', 'yes');\n   url.addParam('sysparm_query', g_list.getQuery({fixed: true}));\n   url.addParam('sysparm_view', g_list.getView());\n   \n   var msg = ['Update the entire list?', 'records', 'Number of records is not available'];\n   var answer = new GwtMessage().getMessages(msg);\n   \n   var promptMsg = answer['Update the entire list?'];\n   if (g_list.omitCount)\n      promptMsg += \" (\" + answer['Number of records is not available'] + \")\";\n   else\n      promptMsg += \" (\" + g_list.grandTotalRows + \" \" + answer['records'] + \")\";\n   if (!confirm(promptMsg))\n      return;\n   \n   g_navigation.open(url.getURL());\n}\n"}});</script><script>GlideMenu.addScripts({"onScripts":{},"scripts":{"26a64f613718030003a08fb77e41f193":" function showFlows(tableName) {\t\n\t var query = 'sys_id=javascript:sn_flow.AssociatedFlows.getFlows(\"'+tableName+'\")^active=true';\n\t var url = new GlideURL('sys_hub_flow_list.do');\n\t url.addParam('sysparm_referring_url', g_list.getReferringURL());\n\t url.addParam('sysparm_query', query );\n\t url.addParam('sysparm_domain_restore', 'false');\n\t window.location = url.getURL();\n }\n","385f79170a0a0b7c001c5cbbe69fc175":"function showRowsPerPage(count) {\r\n   g_list.setRowsPerPage(count);\r\n}\n","eb7353310a0a0b3e0067aebf230c81db":"function assignNewLabelAction() {\n   var tableName = g_list.getTableName();\n   var view = g_list.getView();\n   var sysId = g_sysId;\n   newLabel(tableName, sysId, function(labelName) { assignLabel(labelName, tableName, sysId, view) });\n}\nfunction assignLabelAction(labelName) {\n   assignLabel(labelName, g_list.getTableName(), g_sysId, g_list.getView());\n}\nfunction promptWithMoreTagChoices() {\n\tassignLabelViaLookup(g_list.getTableName(), g_sysId, g_list.getView());\n}\n"}});</script><script>NOW.xperf.dbContextEnd = NOW.xperf.now();</script><span style="display:none" data-comments="db_context_menu_script"></span><script data-description="MessagesTag">(function() {
+ var messages = new GwtMessage();
+messages.set('Timing Type');
+messages.set('Time Range');
+messages.set('Total Time');
+messages.set('{0}ms');
+messages.set('{0} ms');
+messages.set('Browser response time');
+messages.set('Server');
+messages.set('Timing details');
+messages.set('{0} of {1} {2}: {3}');
+messages.set('{0} of {1} Other: {2}');
+messages.set('{0} of {1} {2}: {3}');
+messages.set('Show Timing Breakdown');
+messages.set('Browser timing detail');
+messages.set('Time');
+messages.set('Other');
+messages.set('Timing details breakdown');
+messages.set('Response time(ms): {0}');
+messages.set('Network: {0}');
+messages.set('Network: {0}ms');
+messages.set('Server: {0}');
+messages.set('Server: {0}ms');
+messages.set('Browser: {0}');
+messages.set('Browser: {0}ms');
+messages.set('Response time','Response Time');
+messages.set('Close');
+messages.set('Cache/DNS/TCP');
+messages.set('DOM Processing');
+messages.set('Script Load/Parse');
+messages.set('CSS and JS Parse');
+messages.set('Form Sections');
+messages.set('UI Policy - On Load');
+messages.set('Client Scripts - On Load');
+messages.set('Client Scripts - On Change (initial load)');
+messages.set('Browser processing before onload');
+messages.set('DOMContentLoaded to LoadEventEnd');
+messages.set('addLoadEvent functions');
+messages.set('Related Lists');
+messages.set('Related Lists (sync)');
+messages.set('Related Lists (async)');
+messages.set('onLoad');
+messages.set('Unload');
+})()</script><script type="text/javascript">var g_serverTime = parseInt("200") + parseInt("0");
+            var g_logClientViewRoles = "";
+
+			// do not do this for the navigation menu
+            if (window.name != 'gsft_nav') {
+				 addAfterPageLoadedEvent(function() {
+					 if (window.performance)
+						setTimeGraph();
+					 else 
+						firePageTimer();
+				 });
+			 }
+			 
+			function setTimeGraph() {
+				if (window.performance.timing.loadEventEnd > 0)
+			 		firePageTimer();
+			 	else 
+			 		setTimeout(setTimeGraph, 300);
+			 }
+			 
+			function firePageTimer() {
+				 if (window.performance && performance.timing.requestStart != performance.timing.responseStart) {
+				 	var p = performance.timing;
+
+				 	CustomEvent.fire('page_timing', { name: 'SERV', ms: p.responseEnd - p.requestStart});
+				 	CustomEvent.fire('page_timing', { name: 'REND', ms: (p.loadEventEnd - p.responseEnd) });
+				 	CustomEvent.fire('page_timing_network', { name: 'NETW', ms: (p.responseEnd - p.navigationStart) });
+				 } else {
+				    CustomEvent.fire('page_timing', { name: 'SERV', ms: g_serverTime });
+					CustomEvent.fire('page_timing', { name: 'REND', startTime: g_loadTime });
+					CustomEvent.fire('page_timing_network', { name: 'NETW', loadTime: g_loadTime });
+				 }CustomEvent.fire('page_timing_show', {
+						isFixed: 'true', 
+						show: '' 
+					 });var o = {};
+	      o.types = {};o.types['SECT'] = true;o.types['RLV2'] = true;o.types['UIOL'] = true;o.types['CSOL'] = true;
+	
+	      o.transaction_id = 'eca84046c33362105f9f784ed4013116';
+	      o.table_name = 'u_student_progress';
+	      o.form_name = 'sys_list_template2';
+	      o.view_id = 'Default view';
+	      o.logged_in = true;
+	      o.win = window;
+	      CustomEvent.fire('page_timing_client', o);}
+			 
+            // The following line is used to set the time when we start requesting a new page
+            Event.observe(window, 'beforeunload', function() {
+				new CookieJar({sameSite: 'strict'}).put('g_startTime', new Date().getTime());
+                CustomEvent.fireTop('request_start', document);
+            });
+
+            // simple pages fire this (stats.do, etc.)
+            CustomEvent.observe('simple_page.unload', function() {
+				new CookieJar({sameSite: 'strict'}).put('g_startTime', new Date().getTime());
+            }); 
+
+            // indicate we have completed the request (used by RequestManager.js for cancel widget)
+            addLoadEvent(function() {
+            	CustomEvent.fireTop("request_complete", window.location);
+            });</script><script data-description="MessagesTag">(function() {
+ var messages = new GwtMessage();
+messages.set('Delete');
+messages.set('New rows');
+messages.set('This filter query cannot be edited');
+messages.set('%d from now');
+messages.set('just now');
+messages.set('Go to');
+messages.set('about an hour');
+messages.set('Filter Limit Reached');
+messages.set('Changes have been made. Continuing will discard the changes.');
+messages.set('Open new window');
+messages.set('List editing disabled - to enable, click the gear icon at top of list');
+messages.set('URLs/query omit relationship to parent record');
+messages.set('Show / hide filter');
+messages.set('Mark deleted');
+messages.set('The following mandatory fields are not filled in');
+messages.set('Pin the filters');
+messages.set('Search');
+messages.set('Insert a new row...');
+messages.set('(empty)');
+messages.set('%d months','%dmo');
+messages.set('%d days','%dd');
+messages.set('New row');
+messages.set('There is a cell editor open on this page. Continuing will discard the changes.');
+messages.set('There is a cell editor open on this page, continuing will discard the changes');
+messages.set('Mark record for List Action');
+messages.set('Undelete');
+messages.set('Changes have been made, continuing will discard the changes');
+messages.set('Copy query');
+messages.set('Save');
+messages.set('%d years','%dy');
+messages.set('a day');
+messages.set('The filter you are using is too big. Remove some conditions to make it smaller.');
+messages.set('about a year');
+messages.set('a day,%d days');
+messages.set('less than a minute');
+messages.set('A new {0} identified by {1} will be created upon save');
+messages.set('about a minute','%dm');
+messages.set('Unpin the filters');
+messages.set('Security does not allow the execution of that action against the specified record');
+messages.set('about %d hours','%dh');
+messages.set('Copy URL');
+messages.set('Display / hide hierarchical lists');
+messages.set('Security allows the execution of that action against {0} of {1} records. Proceed?');
+messages.set('%d minutes','%dm');
+messages.set('View');
+messages.set('--None--');
+messages.set('Loading...');
+messages.set('about a month');
+messages.set('%d ago');
+})()</script><script data-description="MessagesTag">
+(function() {
+ var messages = new GwtMessage();
+messages.set('Search');
+})()
+</script><script type="text/javascript" src="/scripts/doctype/z_last_include.jsx?v=07-23-2025_2226"></script></body><script type="text/html" id="popup_template"><div class="popup popup_form" style=""><iframe src="$src" style=""></iframe></div></script></html>
